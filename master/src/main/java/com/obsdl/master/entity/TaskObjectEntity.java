@@ -25,6 +25,9 @@ public class TaskObjectEntity {
 
     private String status;
 
+    @TableField("leased_by")
+    private String leasedBy;
+
     private String etag;
 
     @TableField("created_at")
