@@ -126,3 +126,7 @@ curl -X POST 'http://localhost:8081/api/v1/worker/tasks' \
     "concurrency":8
   }'
 ```
+
+## 8. Worker 执行模式说明
+
+worker 已支持 register/heartbeat/lease/download/rsync/report 主流程，运行方式见 `worker/README.md`。
