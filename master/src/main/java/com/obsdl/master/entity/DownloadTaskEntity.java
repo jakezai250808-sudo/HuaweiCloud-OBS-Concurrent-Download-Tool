@@ -25,6 +25,9 @@ public class DownloadTaskEntity {
     @TableField("total_objects")
     private Integer totalObjects;
 
+    @TableField("done_objects")
+    private Integer doneObjects;
+
     private String status;
 
     @TableField("created_at")

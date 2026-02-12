@@ -1,16 +1,17 @@
 package com.obsdl.master.service;
 
-import com.obsdl.master.dto.task.TaskCreateRequest;
-import com.obsdl.master.dto.task.TaskCreateResponse;
-import com.obsdl.master.dto.task.TaskObjectResponse;
-import com.obsdl.master.dto.task.TaskResponse;
+import com.obsdl.master.dto.task.*;
 import com.obsdl.master.entity.DownloadTaskEntity;
+import com.obsdl.master.entity.ObsAccountEntity;
 import com.obsdl.master.entity.TaskObjectEntity;
 import com.obsdl.master.exception.BizException;
+import com.obsdl.master.mapper.DownloadTaskMapper;
+import com.obsdl.master.mapper.TaskObjectMapper;
 import com.obsdl.master.service.crud.DownloadTaskCrudService;
+import com.obsdl.master.service.crud.ObsAccountCrudService;
 import com.obsdl.master.service.crud.TaskObjectCrudService;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -24,11 +25,20 @@ public class TaskService {
     private static final int DEFAULT_CONCURRENCY = 4;
     private final DownloadTaskCrudService downloadTaskCrudService;
     private final TaskObjectCrudService taskObjectCrudService;
+    private final ObsAccountCrudService obsAccountCrudService;
+    private final TaskObjectMapper taskObjectMapper;
+    private final DownloadTaskMapper downloadTaskMapper;
 
     public TaskService(DownloadTaskCrudService downloadTaskCrudService,
-                       TaskObjectCrudService taskObjectCrudService) {
+                       TaskObjectCrudService taskObjectCrudService,
+                       ObsAccountCrudService obsAccountCrudService,
+                       TaskObjectMapper taskObjectMapper,
+                       DownloadTaskMapper downloadTaskMapper) {
         this.downloadTaskCrudService = downloadTaskCrudService;
         this.taskObjectCrudService = taskObjectCrudService;
+        this.obsAccountCrudService = obsAccountCrudService;
+        this.taskObjectMapper = taskObjectMapper;
+        this.downloadTaskMapper = downloadTaskMapper;
     }
 
     @Transactional
@@ -53,6 +63,7 @@ public class TaskService {
         task.setBucket(request.bucket());
         task.setConcurrency(DEFAULT_CONCURRENCY);
         task.setTotalObjects(objectKeys.size());
+        task.setDoneObjects(0);
         task.setStatus("CREATED");
         task.setCreatedAt(now);
         task.setUpdatedAt(now);
@@ -70,6 +81,65 @@ public class TaskService {
         }).toList();
         taskObjectCrudService.saveBatch(taskObjects);
         return new TaskCreateResponse(task.getId());
+    }
+
+    @Transactional
+    public List<TaskLeaseObjectResponse> lease(Long taskId, TaskLeaseRequest request) {
+        DownloadTaskEntity task = mustGetTask(taskId);
+        ObsAccountEntity account = obsAccountCrudService.getById(task.getAccountId());
+        if (account == null) {
+            throw new BizException(40403, "任务关联账号不存在");
+        }
+
+        // 并发安全最小保证：在同一事务中对 PENDING 对象执行 FOR UPDATE 锁定，再批量更新为 LEASED，避免多个 worker 重复领取同一对象。
+        List<TaskObjectEntity> pendingObjects = taskObjectMapper.selectPendingForUpdate(taskId, request.count());
+        if (pendingObjects.isEmpty()) {
+            return List.of();
+        }
+
+        List<Long> ids = pendingObjects.stream().map(TaskObjectEntity::getId).toList();
+        taskObjectMapper.leaseObjects(taskId, ids, request.workerId());
+
+        return pendingObjects.stream().map(entity -> new TaskLeaseObjectResponse(
+                entity.getObjectKey(),
+                entity.getSize(),
+                entity.getEtag(),
+                account.getEndpoint(),
+                account.getAccessKey(),
+                account.getSecretKey(),
+                task.getBucket()
+        )).toList();
+    }
+
+    @Transactional
+    public void report(Long taskId, TaskReportRequest request) {
+        mustGetTask(taskId);
+
+        // 并发安全最小保证：对目标对象 FOR UPDATE，确保状态迁移和 done_objects 计数在事务内串行化，防止重复累计。
+        TaskObjectEntity object = taskObjectMapper.selectByTaskIdAndObjectKeyForUpdate(taskId, request.objectKey());
+        if (object == null) {
+            throw new BizException(40403, "任务对象不存在");
+        }
+
+        if (object.getLeasedBy() != null && !object.getLeasedBy().equals(request.workerId())) {
+            throw new BizException(40001, "对象由其他 worker 租约持有");
+        }
+
+        String status = request.status().toUpperCase();
+        if ("DONE".equals(status)) {
+            if (!"DONE".equals(object.getStatus())) {
+                object.setStatus("DONE");
+                object.setLeasedBy(request.workerId());
+                taskObjectMapper.updateById(object);
+                downloadTaskMapper.increaseDoneObjects(taskId);
+                downloadTaskMapper.markTaskDoneIfFinished(taskId);
+            }
+            return;
+        }
+
+        object.setStatus("FAILED");
+        object.setLeasedBy(request.workerId());
+        taskObjectMapper.updateById(object);
     }
 
     public TaskResponse getById(Long id) {
@@ -99,5 +169,13 @@ public class TaskService {
                 .stream()
                 .map(entity -> new TaskObjectResponse(entity.getObjectKey(), entity.getStatus(), entity.getSize() == null ? 0L : entity.getSize()))
                 .toList();
+    }
+
+    private DownloadTaskEntity mustGetTask(Long taskId) {
+        DownloadTaskEntity task = downloadTaskCrudService.getById(taskId);
+        if (task == null) {
+            throw new BizException(40403, "任务不存在");
+        }
+        return task;
     }
 }
