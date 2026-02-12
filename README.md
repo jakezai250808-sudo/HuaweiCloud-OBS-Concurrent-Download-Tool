@@ -87,14 +87,33 @@ mysql -uroot -proot < db/init.sql
 ### 7.1 master 创建任务
 
 ```bash
-curl -X POST 'http://localhost:8080/api/v1/tasks' \
+curl -X POST 'http://localhost:8080/api/tasks' \
   -H 'Content-Type: application/json' \
   -d '{
+    "accountId": 1,
     "bucket":"example-bucket",
-    "objectKey":"path/to/file.zip",
-    "concurrency":8
+    "selection": {
+      "objects": [
+        "path/to/file-1.zip",
+        "path/to/file-2.zip"
+      ]
+    }
   }'
 ```
+
+响应示例：
+
+```json
+{
+  "code": 0,
+  "message": "OK",
+  "data": {
+    "taskId": 1001
+  }
+}
+```
+
+> `selection.prefix` 目前尚未支持递归展开对象，后续会补充。
 
 ### 7.2 worker 接收任务
 

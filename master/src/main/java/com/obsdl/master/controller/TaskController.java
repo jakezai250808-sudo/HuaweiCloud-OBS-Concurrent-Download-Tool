@@ -2,6 +2,7 @@ package com.obsdl.master.controller;
 
 import com.obsdl.master.api.ApiResponse;
 import com.obsdl.master.dto.task.TaskCreateRequest;
+import com.obsdl.master.dto.task.TaskCreateResponse;
 import com.obsdl.master.dto.task.TaskObjectResponse;
 import com.obsdl.master.dto.task.TaskResponse;
 import com.obsdl.master.service.TaskService;
@@ -23,7 +24,7 @@ public class TaskController {
 
     @PostMapping
     @Operation(summary = "创建下载任务")
-    public ApiResponse<TaskResponse> create(@Valid @RequestBody TaskCreateRequest request) {
+    public ApiResponse<TaskCreateResponse> create(@Valid @RequestBody TaskCreateRequest request) {
         return ApiResponse.success(taskService.create(request));
     }
 
