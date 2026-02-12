@@ -10,6 +10,7 @@ import com.obsdl.master.mapper.TaskObjectMapper;
 import com.obsdl.master.service.crud.DownloadTaskCrudService;
 import com.obsdl.master.service.crud.ObsAccountCrudService;
 import com.obsdl.master.service.crud.TaskObjectCrudService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ import java.time.ZoneId;
 import java.util.List;
 import java.util.Objects;
 
+@Slf4j
 @Service
 public class TaskService {
 
@@ -140,6 +142,8 @@ public class TaskService {
         object.setStatus("FAILED");
         object.setLeasedBy(request.workerId());
         taskObjectMapper.updateById(object);
+        log.warn("object reported failed, taskId={}, objectKey={}, workerId={}, error={} ",
+                taskId, request.objectKey(), request.workerId(), request.errorMessage());
     }
 
     public TaskResponse getById(Long id) {

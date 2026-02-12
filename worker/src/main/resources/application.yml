@@ -1,6 +1,25 @@
 server:
-  port: 8081
+  port: ${WORKER_PORT:8081}
 
 spring:
   application:
     name: obsdl-worker
+
+worker:
+  runtime:
+    master-url: ${MASTER_URL:http://127.0.0.1:8080}
+    worker-id: ${WORKER_ID:worker-1}
+    max-dl-concurrency: ${MAX_DL_CONCURRENCY:4}
+    cache-dir: ${CACHE_DIR:/tmp/obsdl-cache}
+    master-ssh: ${MASTER_SSH:root@127.0.0.1}
+    target-path: ${TARGET_PATH:/data/obsdl}
+    target-tmp-subdir: ${TARGET_TMP_SUBDIR:.obsdl_tmp}
+    lease-task-id: ${LEASE_TASK_ID:1}
+    heartbeat-seconds: ${HEARTBEAT_SECONDS:10}
+    lease-batch-size: ${LEASE_BATCH_SIZE:50}
+    lease-idle-sleep-ms: ${LEASE_IDLE_SLEEP_MS:2000}
+
+logging:
+  level:
+    root: INFO
+    com.obsdl.worker: INFO
