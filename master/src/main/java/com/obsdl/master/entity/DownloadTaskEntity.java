@@ -22,6 +22,9 @@ public class DownloadTaskEntity {
 
     private Integer concurrency;
 
+    @TableField("total_objects")
+    private Integer totalObjects;
+
     private String status;
 
     @TableField("created_at")
