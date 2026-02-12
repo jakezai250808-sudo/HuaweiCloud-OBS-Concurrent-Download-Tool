@@ -1,43 +1,48 @@
 package com.obsdl.master.service;
 
-import com.obsdl.common.dto.CreateTaskRequest;
-import com.obsdl.common.dto.TaskResponse;
-import com.obsdl.common.enums.TaskStatus;
-import com.obsdl.master.entity.DownloadTaskEntity;
-import com.obsdl.master.entity.TaskObjectEntity;
-import com.obsdl.master.service.crud.DownloadTaskCrudService;
-import com.obsdl.master.service.crud.TaskObjectCrudService;
-import lombok.RequiredArgsConstructor;
+import com.obsdl.master.dto.task.TaskCreateRequest;
+import com.obsdl.master.dto.task.TaskObjectResponse;
+import com.obsdl.master.dto.task.TaskResponse;
+import com.obsdl.master.exception.BizException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.time.Instant;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Service
-@RequiredArgsConstructor
 public class TaskService {
 
-    private final DownloadTaskCrudService downloadTaskCrudService;
-    private final TaskObjectCrudService taskObjectCrudService;
+    private final AtomicLong taskIdGenerator = new AtomicLong(1);
+    private final ConcurrentHashMap<Long, TaskResponse> tasks = new ConcurrentHashMap<>();
 
-    @Transactional(rollbackFor = Exception.class)
-    public TaskResponse createTask(CreateTaskRequest request) {
-        DownloadTaskEntity taskEntity = new DownloadTaskEntity();
-        taskEntity.setBucket(request.getBucket());
-        taskEntity.setConcurrency(request.getConcurrency());
-        taskEntity.setStatus(TaskStatus.CREATED.name());
-        downloadTaskCrudService.save(taskEntity);
+    public TaskResponse create(TaskCreateRequest request) {
+        long id = taskIdGenerator.getAndIncrement();
+        List<TaskObjectResponse> objects = request.objectKeys().stream()
+                .map(key -> new TaskObjectResponse(key, "PENDING", 0L))
+                .toList();
+        TaskResponse response = new TaskResponse(
+                id,
+                request.accountName(),
+                request.bucket(),
+                "CREATED",
+                Instant.now(),
+                objects
+        );
+        tasks.put(id, response);
+        return response;
+    }
 
-        TaskObjectEntity objectEntity = new TaskObjectEntity();
-        objectEntity.setTaskId(taskEntity.getId());
-        objectEntity.setObjectKey(request.getObjectKey());
-        objectEntity.setStatus(TaskStatus.CREATED.name());
-        taskObjectCrudService.save(objectEntity);
+    public TaskResponse getById(Long id) {
+        TaskResponse task = tasks.get(id);
+        if (task == null) {
+            throw new BizException(40403, "任务不存在");
+        }
+        return task;
+    }
 
-        return TaskResponse.builder()
-                .taskId(taskEntity.getId())
-                .bucket(taskEntity.getBucket())
-                .objectKey(objectEntity.getObjectKey())
-                .concurrency(taskEntity.getConcurrency())
-                .status(TaskStatus.CREATED)
-                .build();
+    public List<TaskObjectResponse> listObjects(Long id) {
+        return getById(id).objects();
     }
 }
