@@ -9,20 +9,22 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-@TableName("download_task")
-public class DownloadTaskEntity {
+@TableName("obs_account")
+public class ObsAccountEntity {
 
     @TableId(type = IdType.AUTO)
     private Long id;
 
-    @TableField("account_id")
-    private Long accountId;
+    @TableField("account_name")
+    private String accountName;
 
-    private String bucket;
+    @TableField("access_key")
+    private String accessKey;
 
-    private Integer concurrency;
+    @TableField("secret_key")
+    private String secretKey;
 
-    private String status;
+    private String endpoint;
 
     @TableField("created_at")
     private LocalDateTime createdAt;
