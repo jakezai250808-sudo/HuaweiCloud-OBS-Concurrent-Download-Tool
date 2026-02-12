@@ -1,10 +1,7 @@
 package com.obsdl.master.controller;
 
 import com.obsdl.master.api.ApiResponse;
-import com.obsdl.master.dto.task.TaskCreateRequest;
-import com.obsdl.master.dto.task.TaskCreateResponse;
-import com.obsdl.master.dto.task.TaskObjectResponse;
-import com.obsdl.master.dto.task.TaskResponse;
+import com.obsdl.master.dto.task.*;
 import com.obsdl.master.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -26,6 +23,21 @@ public class TaskController {
     @Operation(summary = "创建下载任务")
     public ApiResponse<TaskCreateResponse> create(@Valid @RequestBody TaskCreateRequest request) {
         return ApiResponse.success(taskService.create(request));
+    }
+
+
+    @PostMapping("/{id}/lease")
+    @Operation(summary = "Worker 租约领取任务对象")
+    public ApiResponse<List<TaskLeaseObjectResponse>> lease(@PathVariable Long id,
+                                                            @Valid @RequestBody TaskLeaseRequest request) {
+        return ApiResponse.success(taskService.lease(id, request));
+    }
+
+    @PostMapping("/{id}/report")
+    @Operation(summary = "Worker 上报对象下载结果")
+    public ApiResponse<Void> report(@PathVariable Long id, @Valid @RequestBody TaskReportRequest request) {
+        taskService.report(id, request);
+        return ApiResponse.success(null);
     }
 
     @GetMapping("/{id}")
