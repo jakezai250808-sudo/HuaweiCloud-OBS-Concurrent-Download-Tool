@@ -5,7 +5,7 @@ import java.util.List;
 
 public record TaskResponse(
         Long id,
-        String accountName,
+        Long accountId,
         String bucket,
         String status,
         Instant createdAt,
