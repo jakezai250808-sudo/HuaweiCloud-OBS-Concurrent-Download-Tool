@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: obsdl-master
+  datasource:
+    url: jdbc:mysql://localhost:3306/obsdl?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-underline: true
+  configuration:
+    map-underscore-to-camel-case: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
