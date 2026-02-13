@@ -36,7 +36,7 @@ mvn -q -DskipTests package
 ### 4.1 启动 master
 
 ```bash
-mvn -pl master spring-boot:run
+mvn -pl master -am spring-boot:run
 ```
 
 默认端口：`8080`
@@ -46,10 +46,14 @@ mvn -pl master spring-boot:run
 ### 4.2 启动 worker
 
 ```bash
-mvn -pl worker spring-boot:run
+mvn -pl worker -am spring-boot:run
 ```
 
 默认端口：`8081`
+
+> 说明：仓库已在 `.mvn/maven.config` 中默认启用 `-am`，因此即使直接使用 `mvn -pl master spring-boot:run` 也会自动联动构建依赖模块。
+
+> 说明：`master`/`worker` 依赖同仓库内的 `common` 模块；若你本地禁用了 `.mvn/maven.config` 默认参数，请手动加 `-am`（also make）避免 `com.obsdl:common` 解析失败。
 
 ## 5. 配置示例
 
