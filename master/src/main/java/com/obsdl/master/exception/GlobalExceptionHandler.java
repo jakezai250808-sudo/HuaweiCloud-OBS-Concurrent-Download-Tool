@@ -6,6 +6,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -41,6 +42,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ApiResponse<Void> handleBadRequest(HttpMessageNotReadableException ex) {
         return ApiResponse.error(40002, "请求体格式错误");
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ApiResponse<Void> handleMissingRequestParameter(MissingServletRequestParameterException ex) {
+        return ApiResponse.error(40001, ex.getParameterName() + " 不能为空");
     }
 
     @ExceptionHandler(Exception.class)

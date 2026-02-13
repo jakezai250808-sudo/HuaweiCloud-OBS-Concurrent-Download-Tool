@@ -31,7 +31,7 @@ public class ObsMockController {
 
     @GetMapping("/objects")
     @Operation(summary = "列举 Objects（占位）", description = "TODO: 接入 OBS Java SDK，返回 bucket 下真实对象列表")
-    public ApiResponse<ObjectListResponse> listObjects(@RequestParam @NotBlank String bucket) {
+    public ApiResponse<ObjectListResponse> listObjects(@RequestParam("bucket") @NotBlank String bucket) {
         return ApiResponse.success(obsMockService.listObjects(bucket));
     }
 }
