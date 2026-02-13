@@ -44,7 +44,7 @@ public class AccountController {
 
     @DeleteMapping
     @Operation(summary = "删除账户")
-    public ApiResponse<Void> delete(@RequestParam @NotNull Long id) {
+    public ApiResponse<Void> delete(@RequestParam("id") @NotNull Long id) {
         accountService.delete(id);
         return ApiResponse.success();
     }

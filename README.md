@@ -31,6 +31,17 @@ obsdl-backend
 mvn -q -DskipTests package
 ```
 
+## 3.1 一键运行 API 测试（含接口模拟 + H2 数据库校验）
+
+```bash
+./scripts/run-master-api-tests.sh
+```
+
+说明：
+- 测试位于 `master/src/test/java/com/obsdl/master/controller`。
+- 使用 `MockMvc` 模拟调用 `accounts/tasks/workers/obs` 全部 API。
+- 使用 `JdbcTemplate` 对 H2 内存库执行增删改查并断言关键字段（如 `download_task`、`task_object`）正确性。
+
 ## 4. 本地启动命令
 
 ### 4.1 启动 master
