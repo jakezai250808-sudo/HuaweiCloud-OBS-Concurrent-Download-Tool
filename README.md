@@ -10,7 +10,7 @@
 
 - JDK 17+
 - Maven 3.9+
-- MySQL 8.0+
+- MySQL 8.0+（生产/默认模式）
 
 ## 2. 项目结构
 
@@ -42,6 +42,14 @@ mvn -pl master -am spring-boot:run
 默认端口：`8080`
 
 - Swagger UI: `http://localhost:8080/swagger-ui.html`
+
+#### Demo 运行模式（内存数据库）
+
+如需快速体验，可启用 `demo` profile，自动切换为 H2 内存数据库并初始化建表 SQL（无需本地 MySQL）：
+
+```bash
+mvn -pl master -am spring-boot:run -Dspring-boot.run.profiles=demo
+```
 
 ### 4.2 启动 worker
 
@@ -85,6 +93,8 @@ server:
 ```bash
 mysql -uroot -proot < db/init.sql
 ```
+
+> `demo` profile 下会自动执行 `master/src/main/resources/db/demo-init.sql`，无需手动初始化。
 
 ## 7. 示例接口
 
