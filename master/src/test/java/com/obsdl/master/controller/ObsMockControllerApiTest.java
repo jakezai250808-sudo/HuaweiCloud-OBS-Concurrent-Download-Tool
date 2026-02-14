@@ -33,4 +33,13 @@ class ObsMockControllerApiTest extends ApiIntegrationTestSupport {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.code").value(40001));
     }
+
+    @Test
+    void listObjectsWithBlankBucketReturnsValidationError() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/obs/objects")
+                        .param("bucket", "   "))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(40001));
+    }
+
 }
