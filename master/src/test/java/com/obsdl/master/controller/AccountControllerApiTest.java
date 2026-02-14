@@ -76,4 +76,28 @@ class AccountControllerApiTest extends ApiIntegrationTestSupport {
                 .andExpect(jsonPath("$.code").value(40401))
                 .andExpect(jsonPath("$.message").value("账户不存在"));
     }
+
+    @Test
+    void deleteMissingAccountReturnsBizError() throws Exception {
+        deleteJson("/api/accounts?id=999")
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(40401))
+                .andExpect(jsonPath("$.message").value("账户不存在"));
+    }
+
+    @Test
+    void createAccountWithBlankNameReturnsValidationError() throws Exception {
+        Map<String, Object> create = Map.of(
+                "name", "   ",
+                "accessKey", "ak-1",
+                "secretKey", "sk-1",
+                "endpoint", "obs-cn.example.com",
+                "bucket", "bucket-a"
+        );
+
+        postJson("/api/accounts", create)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(40001));
+    }
+
 }

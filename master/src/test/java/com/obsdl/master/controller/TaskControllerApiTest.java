@@ -161,6 +161,62 @@ class TaskControllerApiTest extends ApiIntegrationTestSupport {
                 .andExpect(jsonPath("$.data[0].status").value("PENDING"));
     }
 
+    @Test
+    void createTaskWithPrefixReturnsBizError() throws Exception {
+        long accountId = insertObsAccount("acc-prefix", "ak-prefix", "sk-prefix", "obs-prefix.example.com");
+
+        postJson("/api/tasks", Map.of(
+                "accountId", accountId,
+                "bucket", "bucket-main",
+                "selection", Map.of(
+                        "objects", List.of("file-1.txt"),
+                        "prefix", "logs/"
+                )
+        ))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(40001))
+                .andExpect(jsonPath("$.message").value("selection.prefix 暂不支持，请改用 selection.objects"));
+    }
+
+    @Test
+    void leaseMissingTaskReturnsBizError() throws Exception {
+        postJson("/api/tasks/999/lease", Map.of("workerId", "worker-missing", "count", 1))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(40403))
+                .andExpect(jsonPath("$.message").value("任务不存在"));
+    }
+
+    @Test
+    void reportByDifferentWorkerReturnsBizError() throws Exception {
+        long accountId = insertObsAccount("acc-worker-check", "ak-worker-check", "sk-worker-check", "obs-worker.example.com");
+        long taskId = createTask(accountId, "object-1.txt");
+
+        postJson("/api/tasks/" + taskId + "/lease", Map.of("workerId", "worker-a", "count", 1))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(0));
+
+        postJson("/api/tasks/" + taskId + "/report", Map.of(
+                "workerId", "worker-b",
+                "objectKey", "object-1.txt",
+                "status", "done",
+                "errorMessage", ""
+        ))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(40001))
+                .andExpect(jsonPath("$.message").value("对象由其他 worker 租约持有"));
+    }
+
+    @Test
+    void leaseWithInvalidCountReturnsValidationError() throws Exception {
+        long accountId = insertObsAccount("acc-invalid-count", "ak-invalid-count", "sk-invalid-count", "obs-invalid.example.com");
+        long taskId = createTask(accountId, "object-1.txt");
+
+        postJson("/api/tasks/" + taskId + "/lease", Map.of("workerId", "worker-a", "count", 0))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(40001))
+                .andExpect(jsonPath("$.message").value("count 必须大于 0"));
+    }
+
     private long createTask(long accountId, String... objects) throws Exception {
         List<String> objectList = Arrays.asList(objects);
         Map<String, Object> request = Map.of(

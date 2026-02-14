@@ -52,4 +52,37 @@ class WorkerControllerApiTest extends ApiIntegrationTestSupport {
                 .andExpect(jsonPath("$.code").value(40402))
                 .andExpect(jsonPath("$.message").value("Worker 未注册"));
     }
+
+    @Test
+    void registerWithBlankWorkerIdReturnsValidationError() throws Exception {
+        Map<String, Object> register = Map.of(
+                "workerId", "   ",
+                "host", "127.0.0.1",
+                "port", 19090,
+                "maxConcurrency", 8
+        );
+
+        postJson("/api/workers/register", register)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(40001));
+    }
+
+    @Test
+    void heartbeatMissingQueuedTasksReturnsValidationError() throws Exception {
+        postJson("/api/workers/register", Map.of(
+                "workerId", "worker-2",
+                "host", "127.0.0.1",
+                "port", 19091,
+                "maxConcurrency", 4
+        )).andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(0));
+
+        postJson("/api/workers/heartbeat", Map.of(
+                "workerId", "worker-2",
+                "activeTasks", 1
+        ))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(40001));
+    }
+
 }
