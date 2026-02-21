@@ -1,0 +1,16 @@
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/dto/TaskLeaseObjectResponse.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/dto/ApiResponse.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/client/ObsHttpClient.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/dto/TaskReportRequest.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/controller/WorkerTaskController.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/service/WorkerRunnerService.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/WorkerApplication.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/service/RsyncService.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/service/DownloadWorkerService.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/dto/TaskLeaseRequest.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/dto/WorkerHeartbeatRequest.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/config/WorkerRuntimeProperties.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/dto/WorkerRegisterRequest.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/obs/PlaceholderObsClientFacade.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/client/MasterClient.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/obs/ObsClientFacade.java

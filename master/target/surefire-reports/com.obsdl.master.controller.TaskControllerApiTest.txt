@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.obsdl.master.controller.TaskControllerApiTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.138 s -- in com.obsdl.master.controller.TaskControllerApiTest

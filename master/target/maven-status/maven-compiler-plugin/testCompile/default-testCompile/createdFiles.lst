@@ -1,0 +1,6 @@
+com/obsdl/master/controller/OpenApiDocExportTest.class
+com/obsdl/master/controller/AccountControllerApiTest.class
+com/obsdl/master/controller/WorkerControllerApiTest.class
+com/obsdl/master/controller/TaskControllerApiTest.class
+com/obsdl/master/controller/ApiIntegrationTestSupport.class
+com/obsdl/master/controller/ObsMockControllerApiTest.class

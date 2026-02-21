@@ -2,6 +2,7 @@ package com.obsdl.master.exception;
 
 import com.obsdl.master.api.ApiResponse;
 import jakarta.validation.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -47,6 +48,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ApiResponse<Void> handleMissingRequestParameter(MissingServletRequestParameterException ex) {
         return ApiResponse.error(40001, ex.getParameterName() + " 不能为空");
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ApiResponse<Void> handleDataIntegrityViolation(DataIntegrityViolationException ex) {
+        return ApiResponse.error(40001, "数据完整性校验失败");
     }
 
     @ExceptionHandler(Exception.class)

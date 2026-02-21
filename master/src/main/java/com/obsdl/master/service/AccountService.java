@@ -3,43 +3,69 @@ package com.obsdl.master.service;
 import com.obsdl.master.dto.account.AccountCreateRequest;
 import com.obsdl.master.dto.account.AccountResponse;
 import com.obsdl.master.dto.account.AccountUpdateRequest;
+import com.obsdl.master.entity.ObsAccountEntity;
 import com.obsdl.master.exception.BizException;
+import com.obsdl.master.service.crud.ObsAccountCrudService;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class AccountService {
 
-    private final AtomicLong accountIdGenerator = new AtomicLong(1);
-    private final ConcurrentHashMap<Long, AccountResponse> accounts = new ConcurrentHashMap<>();
+    private final ObsAccountCrudService obsAccountCrudService;
+
+    public AccountService(ObsAccountCrudService obsAccountCrudService) {
+        this.obsAccountCrudService = obsAccountCrudService;
+    }
 
     public AccountResponse create(AccountCreateRequest request) {
-        long id = accountIdGenerator.getAndIncrement();
-        AccountResponse account = new AccountResponse(id, request.name(), request.accessKey(), request.endpoint(), request.bucket());
-        accounts.put(id, account);
-        return account;
+        ObsAccountEntity entity = new ObsAccountEntity();
+        entity.setAccountName(request.name());
+        entity.setAccessKey(request.accessKey());
+        entity.setSecretKey(request.secretKey());
+        entity.setEndpoint(request.endpoint());
+        entity.setBucket(request.bucket());
+        obsAccountCrudService.save(entity);
+        return toResponse(entity);
     }
 
     public List<AccountResponse> list() {
-        return accounts.values().stream().sorted(Comparator.comparing(AccountResponse::id)).toList();
+        return obsAccountCrudService.lambdaQuery()
+                .orderByAsc(ObsAccountEntity::getId)
+                .list()
+                .stream()
+                .map(this::toResponse)
+                .toList();
     }
 
     public AccountResponse update(AccountUpdateRequest request) {
-        if (!accounts.containsKey(request.id())) {
+        ObsAccountEntity entity = obsAccountCrudService.getById(request.id());
+        if (entity == null) {
             throw new BizException(40401, "账户不存在");
         }
-        AccountResponse updated = new AccountResponse(request.id(), request.name(), request.accessKey(), request.endpoint(), request.bucket());
-        accounts.put(request.id(), updated);
-        return updated;
+        entity.setAccountName(request.name());
+        entity.setAccessKey(request.accessKey());
+        entity.setSecretKey(request.secretKey());
+        entity.setEndpoint(request.endpoint());
+        entity.setBucket(request.bucket());
+        obsAccountCrudService.updateById(entity);
+        return toResponse(entity);
     }
 
     public void delete(Long id) {
-        if (accounts.remove(id) == null) {
+        if (!obsAccountCrudService.removeById(id)) {
             throw new BizException(40401, "账户不存在");
         }
+    }
+
+    private AccountResponse toResponse(ObsAccountEntity entity) {
+        return new AccountResponse(
+                entity.getId(),
+                entity.getAccountName(),
+                entity.getAccessKey(),
+                entity.getEndpoint(),
+                entity.getBucket()
+        );
     }
 }

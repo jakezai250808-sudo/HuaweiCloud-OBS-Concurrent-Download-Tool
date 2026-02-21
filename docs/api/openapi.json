@@ -1,0 +1,874 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "OBSDL Master API",
+    "description" : "Master service for coordinating OBS concurrent downloads",
+    "version" : "v1"
+  },
+  "servers" : [ {
+    "url" : "http://localhost",
+    "description" : "Generated server url"
+  } ],
+  "paths" : {
+    "/api/accounts" : {
+      "get" : {
+        "tags" : [ "account-controller" ],
+        "summary" : "查询账户列表",
+        "operationId" : "list",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseListAccountResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "account-controller" ],
+        "summary" : "更新账户",
+        "operationId" : "update",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AccountUpdateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseAccountResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "account-controller" ],
+        "summary" : "创建账户",
+        "operationId" : "create_1",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AccountCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseAccountResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "account-controller" ],
+        "summary" : "删除账户",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/workers/register" : {
+      "post" : {
+        "tags" : [ "worker-controller" ],
+        "summary" : "Worker 注册",
+        "operationId" : "register",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/WorkerRegisterRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseWorkerResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/workers/heartbeat" : {
+      "post" : {
+        "tags" : [ "worker-controller" ],
+        "summary" : "Worker 心跳",
+        "operationId" : "heartbeat",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/WorkerHeartbeatRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseWorkerResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks" : {
+      "post" : {
+        "tags" : [ "task-controller" ],
+        "summary" : "创建下载任务",
+        "operationId" : "create",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TaskCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseTaskCreateResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}/report" : {
+      "post" : {
+        "tags" : [ "task-controller" ],
+        "summary" : "Worker 上报对象下载结果",
+        "operationId" : "report",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TaskReportRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}/lease" : {
+      "post" : {
+        "tags" : [ "task-controller" ],
+        "summary" : "Worker 租约领取任务对象",
+        "operationId" : "lease",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TaskLeaseRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseListTaskLeaseObjectResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}" : {
+      "get" : {
+        "tags" : [ "task-controller" ],
+        "summary" : "获取任务详情",
+        "operationId" : "getById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseTaskResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}/objects" : {
+      "get" : {
+        "tags" : [ "task-controller" ],
+        "summary" : "获取任务对象列表（占位）",
+        "description" : "TODO: 接入 OBS Java SDK，返回真实对象列表与元数据",
+        "operationId" : "listObjects",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseListTaskObjectResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/obs/objects" : {
+      "get" : {
+        "tags" : [ "obs-mock-controller" ],
+        "summary" : "列举 Objects（占位）",
+        "description" : "TODO: 接入 OBS Java SDK，返回 bucket 下真实对象列表",
+        "operationId" : "listObjects_1",
+        "parameters" : [ {
+          "name" : "bucket",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseObjectListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/obs/buckets" : {
+      "get" : {
+        "tags" : [ "obs-mock-controller" ],
+        "summary" : "列举 Buckets（占位）",
+        "description" : "TODO: 接入 OBS Java SDK，返回账号下真实 buckets",
+        "operationId" : "listBuckets",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseBucketListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "AccountUpdateRequest" : {
+        "required" : [ "accessKey", "bucket", "endpoint", "id", "name", "secretKey" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "name" : {
+            "maxLength" : 64,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "accessKey" : {
+            "maxLength" : 128,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "secretKey" : {
+            "maxLength" : 128,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "endpoint" : {
+            "maxLength" : 255,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "bucket" : {
+            "maxLength" : 64,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        }
+      },
+      "AccountResponse" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "accessKey" : {
+            "type" : "string"
+          },
+          "endpoint" : {
+            "type" : "string"
+          },
+          "bucket" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ApiResponseAccountResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/AccountResponse"
+          }
+        }
+      },
+      "WorkerRegisterRequest" : {
+        "required" : [ "host", "maxConcurrency", "port", "workerId" ],
+        "type" : "object",
+        "properties" : {
+          "workerId" : {
+            "maxLength" : 64,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "host" : {
+            "maxLength" : 64,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "maxConcurrency" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "ApiResponseWorkerResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/WorkerResponse"
+          }
+        }
+      },
+      "WorkerResponse" : {
+        "type" : "object",
+        "properties" : {
+          "workerId" : {
+            "type" : "string"
+          },
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "maxConcurrency" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "activeTasks" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "queuedTasks" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "lastHeartbeat" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      },
+      "WorkerHeartbeatRequest" : {
+        "required" : [ "activeTasks", "queuedTasks", "workerId" ],
+        "type" : "object",
+        "properties" : {
+          "workerId" : {
+            "type" : "string"
+          },
+          "activeTasks" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "queuedTasks" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "Selection" : {
+        "required" : [ "objects" ],
+        "type" : "object",
+        "properties" : {
+          "objects" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "prefix" : {
+            "type" : "string"
+          }
+        }
+      },
+      "TaskCreateRequest" : {
+        "required" : [ "accountId", "bucket", "selection" ],
+        "type" : "object",
+        "properties" : {
+          "accountId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "bucket" : {
+            "maxLength" : 64,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "selection" : {
+            "$ref" : "#/components/schemas/Selection"
+          }
+        }
+      },
+      "ApiResponseTaskCreateResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/TaskCreateResponse"
+          }
+        }
+      },
+      "TaskCreateResponse" : {
+        "type" : "object",
+        "properties" : {
+          "taskId" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "TaskReportRequest" : {
+        "required" : [ "objectKey", "status", "workerId" ],
+        "type" : "object",
+        "properties" : {
+          "workerId" : {
+            "type" : "string"
+          },
+          "objectKey" : {
+            "type" : "string"
+          },
+          "status" : {
+            "pattern" : "done|failed",
+            "type" : "string"
+          },
+          "errorMessage" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ApiResponseVoid" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "data" : {
+            "type" : "object"
+          }
+        }
+      },
+      "TaskLeaseRequest" : {
+        "required" : [ "count", "workerId" ],
+        "type" : "object",
+        "properties" : {
+          "workerId" : {
+            "type" : "string"
+          },
+          "count" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "ApiResponseListTaskLeaseObjectResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/TaskLeaseObjectResponse"
+            }
+          }
+        }
+      },
+      "TaskLeaseObjectResponse" : {
+        "type" : "object",
+        "properties" : {
+          "objectKey" : {
+            "type" : "string"
+          },
+          "size" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "etag" : {
+            "type" : "string"
+          },
+          "endpoint" : {
+            "type" : "string"
+          },
+          "ak" : {
+            "type" : "string"
+          },
+          "sk" : {
+            "type" : "string"
+          },
+          "bucket" : {
+            "type" : "string"
+          }
+        }
+      },
+      "AccountCreateRequest" : {
+        "required" : [ "accessKey", "bucket", "endpoint", "name", "secretKey" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "maxLength" : 64,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "accessKey" : {
+            "maxLength" : 128,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "secretKey" : {
+            "maxLength" : 128,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "endpoint" : {
+            "maxLength" : 255,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "bucket" : {
+            "maxLength" : 64,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        }
+      },
+      "ApiResponseTaskResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/TaskResponse"
+          }
+        }
+      },
+      "TaskObjectResponse" : {
+        "type" : "object",
+        "properties" : {
+          "objectKey" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "size" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "TaskResponse" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "accountId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "bucket" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "objects" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/TaskObjectResponse"
+            }
+          }
+        }
+      },
+      "ApiResponseListTaskObjectResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/TaskObjectResponse"
+            }
+          }
+        }
+      },
+      "ApiResponseObjectListResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ObjectListResponse"
+          }
+        }
+      },
+      "ObjectListResponse" : {
+        "type" : "object",
+        "properties" : {
+          "bucket" : {
+            "type" : "string"
+          },
+          "objectKeys" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "ApiResponseBucketListResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/BucketListResponse"
+          }
+        }
+      },
+      "BucketListResponse" : {
+        "type" : "object",
+        "properties" : {
+          "buckets" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "ApiResponseListAccountResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/AccountResponse"
+            }
+          }
+        }
+      }
+    }
+  }
+}

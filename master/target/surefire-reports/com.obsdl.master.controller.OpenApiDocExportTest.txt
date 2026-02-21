@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.obsdl.master.controller.OpenApiDocExportTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.89 s -- in com.obsdl.master.controller.OpenApiDocExportTest

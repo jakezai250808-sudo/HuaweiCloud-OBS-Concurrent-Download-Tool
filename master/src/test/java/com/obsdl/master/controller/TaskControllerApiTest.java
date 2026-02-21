@@ -161,6 +161,20 @@ class TaskControllerApiTest extends ApiIntegrationTestSupport {
                 .andExpect(jsonPath("$.data[0].status").value("PENDING"));
     }
 
+    @Test
+    void createTaskReturnsNotFoundWhenAccountDoesNotExist() throws Exception {
+        Map<String, Object> request = Map.of(
+                "accountId", 999999L,
+                "bucket", "bucket-main",
+                "selection", Map.of("objects", List.of("obj-a.txt"))
+        );
+
+        postJson("/api/tasks", request)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(40403))
+                .andExpect(jsonPath("$.message").value("账号不存在"));
+    }
+
     private long createTask(long accountId, String... objects) throws Exception {
         List<String> objectList = Arrays.asList(objects);
         Map<String, Object> request = Map.of(

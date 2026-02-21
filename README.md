@@ -42,6 +42,12 @@ mvn -q -DskipTests package
 - 使用 `MockMvc` 模拟调用 `accounts/tasks/workers/obs` 全部 API。
 - 使用 `JdbcTemplate` 对 H2 内存库执行增删改查并断言关键字段（如 `download_task`、`task_object`）正确性。
 
+## 3.2 API 文档导出（自动更新）
+
+- 导出目录：`docs/api/openapi.json`
+- 导出来源：`master` 服务的 `GET /v3/api-docs`
+- 自动更新方式：执行 `mvn -pl master test` 时，`OpenApiDocExportTest` 会自动覆盖更新文档文件。
+
 ## 4. 本地启动命令
 
 ### 4.1 启动 master

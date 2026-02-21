@@ -26,6 +26,8 @@ public class ObsAccountEntity {
 
     private String endpoint;
 
+    private String bucket;
+
     @TableField("created_at")
     private LocalDateTime createdAt;
 

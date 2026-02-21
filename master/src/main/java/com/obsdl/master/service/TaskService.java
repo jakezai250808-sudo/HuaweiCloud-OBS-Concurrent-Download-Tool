@@ -49,6 +49,9 @@ public class TaskService {
             // TODO: 支持按 prefix 递归展开对象列表
             throw new BizException(40001, "selection.prefix 暂不支持，请改用 selection.objects");
         }
+        if (obsAccountCrudService.getById(request.accountId()) == null) {
+            throw new BizException(40403, "账号不存在");
+        }
 
         List<String> objectKeys = request.selection().objects().stream()
                 .map(String::trim)

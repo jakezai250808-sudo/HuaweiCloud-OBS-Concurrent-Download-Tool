@@ -59,10 +59,14 @@ abstract class ApiIntegrationTestSupport {
     }
 
     protected long insertObsAccount(String accountName, String accessKey, String secretKey, String endpoint) {
+        return insertObsAccount(accountName, accessKey, secretKey, endpoint, "bucket-default");
+    }
+
+    protected long insertObsAccount(String accountName, String accessKey, String secretKey, String endpoint, String bucket) {
         jdbcTemplate.update("""
-                INSERT INTO obs_account (account_name, access_key, secret_key, endpoint, created_at, updated_at)
-                VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-                """, accountName, accessKey, secretKey, endpoint);
+                INSERT INTO obs_account (account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                """, accountName, accessKey, secretKey, endpoint, bucket);
         Long id = jdbcTemplate.queryForObject(
                 "SELECT id FROM obs_account WHERE account_name = ?",
                 Long.class,

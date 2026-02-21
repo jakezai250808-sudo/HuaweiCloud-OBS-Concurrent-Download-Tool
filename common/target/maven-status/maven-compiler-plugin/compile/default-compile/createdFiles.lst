@@ -1,0 +1,5 @@
+com/obsdl/common/dto/CreateTaskRequest.class
+com/obsdl/common/dto/TaskResponse.class
+com/obsdl/common/dto/TaskResponse$TaskResponseBuilder.class
+com/obsdl/common/util/IdGenerator.class
+com/obsdl/common/enums/TaskStatus.class
