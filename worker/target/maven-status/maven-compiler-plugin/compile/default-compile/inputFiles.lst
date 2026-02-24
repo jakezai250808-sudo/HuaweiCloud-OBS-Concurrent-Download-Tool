@@ -1,6 +1,8 @@
 /Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/dto/TaskLeaseObjectResponse.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/dto/MasterTaskResponse.java
 /Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/dto/ApiResponse.java
 /Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/client/ObsHttpClient.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/obs/SdkObsClientFacade.java
 /Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/dto/TaskReportRequest.java
 /Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/controller/WorkerTaskController.java
 /Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/service/WorkerRunnerService.java
@@ -14,3 +16,4 @@
 /Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/obs/PlaceholderObsClientFacade.java
 /Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/client/MasterClient.java
 /Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/obs/ObsClientFacade.java
+/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/worker/src/main/java/com/obsdl/worker/dto/MasterTaskObjectResponse.java

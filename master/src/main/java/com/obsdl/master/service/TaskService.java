@@ -89,6 +89,47 @@ public class TaskService {
     }
 
     @Transactional
+    public TaskCreateResponse retryFromTask(Long sourceTaskId) {
+        DownloadTaskEntity sourceTask = mustGetTask(sourceTaskId);
+
+        List<TaskObjectEntity> failedObjects = taskObjectCrudService.lambdaQuery()
+                .eq(TaskObjectEntity::getTaskId, sourceTaskId)
+                .eq(TaskObjectEntity::getStatus, "FAILED")
+                .list();
+        if (failedObjects.isEmpty()) {
+            throw new BizException(40001, "源任务无失败对象可重试");
+        }
+
+        LocalDateTime now = LocalDateTime.now();
+        DownloadTaskEntity newTask = new DownloadTaskEntity();
+        newTask.setAccountId(sourceTask.getAccountId());
+        newTask.setBucket(sourceTask.getBucket());
+        newTask.setConcurrency(sourceTask.getConcurrency() == null ? DEFAULT_CONCURRENCY : sourceTask.getConcurrency());
+        newTask.setTotalObjects(failedObjects.size());
+        newTask.setDoneObjects(0);
+        newTask.setStatus("CREATED");
+        newTask.setCreatedAt(now);
+        newTask.setUpdatedAt(now);
+        downloadTaskCrudService.save(newTask);
+
+        List<TaskObjectEntity> retryObjects = failedObjects.stream()
+                .map(sourceObject -> {
+                    TaskObjectEntity retryObject = new TaskObjectEntity();
+                    retryObject.setTaskId(newTask.getId());
+                    retryObject.setObjectKey(sourceObject.getObjectKey());
+                    retryObject.setSize(sourceObject.getSize() == null ? 0L : sourceObject.getSize());
+                    retryObject.setEtag(sourceObject.getEtag());
+                    retryObject.setStatus("PENDING");
+                    retryObject.setCreatedAt(now);
+                    retryObject.setUpdatedAt(now);
+                    return retryObject;
+                })
+                .toList();
+        taskObjectCrudService.saveBatch(retryObjects);
+        return new TaskCreateResponse(newTask.getId());
+    }
+
+    @Transactional
     public List<TaskLeaseObjectResponse> lease(Long taskId, TaskLeaseRequest request) {
         DownloadTaskEntity task = mustGetTask(taskId);
         ObsAccountEntity account = obsAccountCrudService.getById(task.getAccountId());
@@ -164,6 +205,22 @@ public class TaskService {
                 Objects.nonNull(task.getCreatedAt()) ? task.getCreatedAt().atZone(ZoneId.systemDefault()).toInstant() : Instant.now(),
                 objects
         );
+    }
+
+    public List<TaskResponse> list() {
+        return downloadTaskCrudService.lambdaQuery()
+                .orderByDesc(DownloadTaskEntity::getId)
+                .list()
+                .stream()
+                .map(task -> new TaskResponse(
+                        task.getId(),
+                        task.getAccountId(),
+                        task.getBucket(),
+                        task.getStatus(),
+                        Objects.nonNull(task.getCreatedAt()) ? task.getCreatedAt().atZone(ZoneId.systemDefault()).toInstant() : Instant.now(),
+                        listObjects(task.getId())
+                ))
+                .toList();
     }
 
     public List<TaskObjectResponse> listObjects(Long id) {

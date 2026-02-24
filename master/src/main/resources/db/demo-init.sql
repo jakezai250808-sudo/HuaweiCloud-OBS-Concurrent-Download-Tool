@@ -53,6 +53,17 @@ CREATE TABLE IF NOT EXISTS worker_node (
     CONSTRAINT uk_worker_host_port UNIQUE (host, port)
 );
 
+CREATE TABLE IF NOT EXISTS obs_mock_object (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    bucket VARCHAR(128) NOT NULL,
+    object_key VARCHAR(512) NOT NULL,
+    size BIGINT NOT NULL DEFAULT 0,
+    last_modified TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    etag VARCHAR(128),
+    storage_class VARCHAR(64),
+    CONSTRAINT uk_obs_mock_bucket_object UNIQUE (bucket, object_key)
+);
+
 -- Seed demo data for local API debugging.
 MERGE INTO obs_account (id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at)
 KEY (id) VALUES
@@ -69,3 +80,17 @@ KEY (id) VALUES
     (2001, 1001, 'incoming/string/2026/01/events-0001.json', 0, 'PENDING', NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (2002, 1001, 'incoming/string/2026/01/events-0002.json', 0, 'PENDING', NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (2003, 1002, 'incoming/string/2026/01/summary.csv', 0, 'DONE', 'worker-demo', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+MERGE INTO obs_mock_object (id, bucket, object_key, size, last_modified, etag, storage_class)
+KEY (id) VALUES
+    (3001, 'demo-bucket', 'photos/2025/01/a.jpg', 1024, TIMESTAMP '2026-02-21 10:00:00', 'etag-3001', 'STANDARD'),
+    (3002, 'demo-bucket', 'photos/2025/02/b.jpg', 2048, TIMESTAMP '2026-02-21 10:01:00', 'etag-3002', 'STANDARD'),
+    (3003, 'demo-bucket', 'photos/readme.txt', 128, TIMESTAMP '2026-02-21 10:02:00', 'etag-3003', 'STANDARD'),
+    (3004, 'demo-bucket', 'docs/specs/v1/design.pdf', 4096, TIMESTAMP '2026-02-21 10:03:00', 'etag-3004', 'STANDARD'),
+    (3005, 'demo-bucket', 'docs/specs/v1/api.yaml', 512, TIMESTAMP '2026-02-21 10:04:00', 'etag-3005', 'STANDARD'),
+    (3006, 'demo-bucket', 'docs/specs/v2/api.yaml', 768, TIMESTAMP '2026-02-21 10:05:00', 'etag-3006', 'STANDARD'),
+    (3007, 'demo-bucket', 'root.txt', 64, TIMESTAMP '2026-02-21 10:06:00', 'etag-3007', 'STANDARD_IA'),
+    (3008, 'demo-bucket-2', 'reports/2026/summary.csv', 900, TIMESTAMP '2026-02-21 10:07:00', 'etag-3008', 'STANDARD'),
+    (3009, 'demo-bucket-2', 'reports/readme.md', 80, TIMESTAMP '2026-02-21 10:08:00', 'etag-3009', 'STANDARD'),
+    (3010, 'demo-bucket-logs', 'app/2026/02/21/log-0001.gz', 1200, TIMESTAMP '2026-02-21 10:09:00', 'etag-3010', 'WARM'),
+    (3011, 'demo-bucket-logs', 'app/2026/02/21/log-0002.gz', 1400, TIMESTAMP '2026-02-21 10:10:00', 'etag-3011', 'WARM');

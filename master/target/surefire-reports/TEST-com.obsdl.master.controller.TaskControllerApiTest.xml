@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.obsdl.master.controller.TaskControllerApiTest" time="0.138" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.obsdl.master.controller.TaskControllerApiTest" time="0.162" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/test-classes:/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/classes:/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/common/target/classes:/Users/Jake/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.5/spring-boot-starter-web-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.5/spring-boot-starter-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot/3.3.5/spring-boot-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.5/spring-boot-starter-logging-3.3.5.jar:/Users/Jake/.m2/repository/ch/qos/logback/logback-classic/1.5.11/logback-classic-1.5.11.jar:/Users/Jake/.m2/repository/ch/qos/logback/logback-core/1.5.11/logback-core-1.5.11.jar:/Users/Jake/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/Users/Jake/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/Users/Jake/.m2/repository/org/slf4j/jul-to-slf4j/2.0.16/jul-to-slf4j-2.0.16.jar:/Users/Jake/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/Users/Jake/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.5/spring-boot-starter-json-3.3.5.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.2/jackson-datatype-jdk8-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.2/jackson-datatype-jsr310-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.2/jackson-module-parameter-names-2.17.2.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.5/spring-boot-starter-tomcat-3.3.5.jar:/Users/Jake/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.31/tomcat-embed-core-10.1.31.jar:/Users/Jake/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.31/tomcat-embed-websocket-10.1.31.jar:/Users/Jake/.m2/repository/org/springframework/spring-web/6.1.14/spring-web-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-beans/6.1.14/spring-beans-6.1.14.jar:/Users/Jake/.m2/repository/io/micrometer/micrometer-observation/1.13.6/micrometer-observation-1.13.6.jar:/Users/Jake/.m2/repository/io/micrometer/micrometer-commons/1.13.6/micrometer-commons-1.13.6.jar:/Users/Jake/.m2/repository/org/springframework/spring-webmvc/6.1.14/spring-webmvc-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-aop/6.1.14/spring-aop-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-context/6.1.14/spring-context-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-expression/6.1.14/spring-expression-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.5/spring-boot-starter-validation-3.3.5.jar:/Users/Jake/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.31/tomcat-embed-el-10.1.31.jar:/Users/Jake/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/Users/Jake/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/Users/Jake/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/Users/Jake/.m2/repository/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar:/Users/Jake/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-spring-boot3-starter/3.5.10.1/mybatis-plus-spring-boot3-starter-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus/3.5.10.1/mybatis-plus-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-core/3.5.10.1/mybatis-plus-core-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-annotation/3.5.10.1/mybatis-plus-annotation-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-spring/3.5.10.1/mybatis-plus-spring-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-extension/3.5.10.1/mybatis-plus-extension-3.5.10.1.jar:/Users/Jake/.m2/repository/org/mybatis/mybatis/3.5.19/mybatis-3.5.19.jar:/Users/Jake/.m2/repository/org/mybatis/mybatis-spring/3.0.4/mybatis-spring-3.0.4.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-spring-boot-autoconfigure/3.5.10.1/mybatis-plus-spring-boot-autoconfigure-3.5.10.1.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.5/spring-boot-autoconfigure-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.5/spring-boot-starter-jdbc-3.3.5.jar:/Users/Jake/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/Users/Jake/.m2/repository/org/springframework/spring-jdbc/6.1.14/spring-jdbc-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-tx/6.1.14/spring-tx-6.1.14.jar:/Users/Jake/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.6.0/springdoc-openapi-starter-webmvc-ui-2.6.0.jar:/Users/Jake/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.6.0/springdoc-openapi-starter-webmvc-api-2.6.0.jar:/Users/Jake/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.6.0/springdoc-openapi-starter-common-2.6.0.jar:/Users/Jake/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.22/swagger-core-jakarta-2.2.22.jar:/Users/Jake/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/Users/Jake/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.22/swagger-annotations-jakarta-2.2.22.jar:/Users/Jake/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.22/swagger-models-jakarta-2.2.22.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.2/jackson-dataformat-yaml-2.17.2.jar:/Users/Jake/.m2/repository/org/webjars/swagger-ui/5.17.14/swagger-ui-5.17.14.jar:/Users/Jake/.m2/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.5/spring-boot-starter-test-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-test/3.3.5/spring-boot-test-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.5/spring-boot-test-autoconfigure-3.3.5.jar:/Users/Jake/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/Users/Jake/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/Users/Jake/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/Users/Jake/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/Users/Jake/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/Users/Jake/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/Users/Jake/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/Users/Jake/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/Users/Jake/.m2/repository/net/bytebuddy/byte-buddy/1.14.19/byte-buddy-1.14.19.jar:/Users/Jake/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/Users/Jake/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.5/junit-jupiter-5.10.5.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.5/junit-jupiter-api-5.10.5.jar:/Users/Jake/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/Jake/.m2/repository/org/junit/platform/junit-platform-commons/1.10.5/junit-platform-commons-1.10.5.jar:/Users/Jake/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.5/junit-jupiter-params-5.10.5.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.5/junit-jupiter-engine-5.10.5.jar:/Users/Jake/.m2/repository/org/junit/platform/junit-platform-engine/1.10.5/junit-platform-engine-1.10.5.jar:/Users/Jake/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/Users/Jake/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar:/Users/Jake/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/Jake/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/Users/Jake/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/Users/Jake/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/Jake/.m2/repository/org/springframework/spring-core/6.1.14/spring-core-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-jcl/6.1.14/spring-jcl-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-test/6.1.14/spring-test-6.1.14.jar:/Users/Jake/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:"/>
+    <property name="java.class.path" value="/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/test-classes:/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/classes:/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/common/target/classes:/Users/Jake/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.5/spring-boot-starter-web-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.5/spring-boot-starter-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot/3.3.5/spring-boot-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.5/spring-boot-starter-logging-3.3.5.jar:/Users/Jake/.m2/repository/ch/qos/logback/logback-classic/1.5.11/logback-classic-1.5.11.jar:/Users/Jake/.m2/repository/ch/qos/logback/logback-core/1.5.11/logback-core-1.5.11.jar:/Users/Jake/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/Users/Jake/.m2/repository/org/slf4j/jul-to-slf4j/2.0.16/jul-to-slf4j-2.0.16.jar:/Users/Jake/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/Users/Jake/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.5/spring-boot-starter-json-3.3.5.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.2/jackson-datatype-jdk8-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.2/jackson-datatype-jsr310-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.2/jackson-module-parameter-names-2.17.2.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.5/spring-boot-starter-tomcat-3.3.5.jar:/Users/Jake/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.31/tomcat-embed-core-10.1.31.jar:/Users/Jake/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.31/tomcat-embed-websocket-10.1.31.jar:/Users/Jake/.m2/repository/org/springframework/spring-web/6.1.14/spring-web-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-beans/6.1.14/spring-beans-6.1.14.jar:/Users/Jake/.m2/repository/io/micrometer/micrometer-observation/1.13.6/micrometer-observation-1.13.6.jar:/Users/Jake/.m2/repository/io/micrometer/micrometer-commons/1.13.6/micrometer-commons-1.13.6.jar:/Users/Jake/.m2/repository/org/springframework/spring-webmvc/6.1.14/spring-webmvc-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-aop/6.1.14/spring-aop-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-context/6.1.14/spring-context-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-expression/6.1.14/spring-expression-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.5/spring-boot-starter-validation-3.3.5.jar:/Users/Jake/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.31/tomcat-embed-el-10.1.31.jar:/Users/Jake/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/Users/Jake/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/Users/Jake/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/Users/Jake/.m2/repository/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar:/Users/Jake/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-spring-boot3-starter/3.5.10.1/mybatis-plus-spring-boot3-starter-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus/3.5.10.1/mybatis-plus-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-core/3.5.10.1/mybatis-plus-core-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-annotation/3.5.10.1/mybatis-plus-annotation-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-spring/3.5.10.1/mybatis-plus-spring-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-extension/3.5.10.1/mybatis-plus-extension-3.5.10.1.jar:/Users/Jake/.m2/repository/org/mybatis/mybatis/3.5.19/mybatis-3.5.19.jar:/Users/Jake/.m2/repository/org/mybatis/mybatis-spring/3.0.4/mybatis-spring-3.0.4.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-spring-boot-autoconfigure/3.5.10.1/mybatis-plus-spring-boot-autoconfigure-3.5.10.1.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.5/spring-boot-autoconfigure-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.5/spring-boot-starter-jdbc-3.3.5.jar:/Users/Jake/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/Users/Jake/.m2/repository/org/springframework/spring-jdbc/6.1.14/spring-jdbc-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-tx/6.1.14/spring-tx-6.1.14.jar:/Users/Jake/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.6.0/springdoc-openapi-starter-webmvc-ui-2.6.0.jar:/Users/Jake/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.6.0/springdoc-openapi-starter-webmvc-api-2.6.0.jar:/Users/Jake/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.6.0/springdoc-openapi-starter-common-2.6.0.jar:/Users/Jake/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.22/swagger-core-jakarta-2.2.22.jar:/Users/Jake/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/Users/Jake/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.22/swagger-annotations-jakarta-2.2.22.jar:/Users/Jake/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.22/swagger-models-jakarta-2.2.22.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.2/jackson-dataformat-yaml-2.17.2.jar:/Users/Jake/.m2/repository/org/webjars/swagger-ui/5.17.14/swagger-ui-5.17.14.jar:/Users/Jake/.m2/repository/com/huaweicloud/esdk-obs-java-bundle/3.23.9/esdk-obs-java-bundle-3.23.9.jar:/Users/Jake/.m2/repository/org/apache/logging/log4j/log4j-core/2.23.1/log4j-core-2.23.1.jar:/Users/Jake/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/Users/Jake/.m2/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.5/spring-boot-starter-test-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-test/3.3.5/spring-boot-test-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.5/spring-boot-test-autoconfigure-3.3.5.jar:/Users/Jake/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/Users/Jake/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/Users/Jake/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/Users/Jake/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/Users/Jake/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/Users/Jake/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/Users/Jake/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/Users/Jake/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/Users/Jake/.m2/repository/net/bytebuddy/byte-buddy/1.14.19/byte-buddy-1.14.19.jar:/Users/Jake/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/Users/Jake/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.5/junit-jupiter-5.10.5.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.5/junit-jupiter-api-5.10.5.jar:/Users/Jake/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/Jake/.m2/repository/org/junit/platform/junit-platform-commons/1.10.5/junit-platform-commons-1.10.5.jar:/Users/Jake/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.5/junit-jupiter-params-5.10.5.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.5/junit-jupiter-engine-5.10.5.jar:/Users/Jake/.m2/repository/org/junit/platform/junit-platform-engine/1.10.5/junit-platform-engine-1.10.5.jar:/Users/Jake/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/Users/Jake/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar:/Users/Jake/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/Jake/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/Users/Jake/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/Users/Jake/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/Jake/.m2/repository/org/springframework/spring-core/6.1.14/spring-core-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-jcl/6.1.14/spring-jcl-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-test/6.1.14/spring-test-6.1.14.jar:/Users/Jake/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:"/>
     <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://adoptium.net/"/>
@@ -14,10 +14,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="CN"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/surefire/surefirebooter-20260221004001057_3.jar /Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/surefire 2026-02-21T00-39-59_392-jvmRun1 surefire-20260221004001057_1tmp surefire_0-20260221004001057_2tmp"/>
+    <property name="sun.java.command" value="/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/surefire/surefirebooter-20260222005917797_3.jar /Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/surefire 2026-02-22T00-59-15_933-jvmRun1 surefire-20260222005917797_1tmp surefire_0-20260222005917797_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/test-classes:/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/classes:/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/common/target/classes:/Users/Jake/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.5/spring-boot-starter-web-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.5/spring-boot-starter-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot/3.3.5/spring-boot-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.5/spring-boot-starter-logging-3.3.5.jar:/Users/Jake/.m2/repository/ch/qos/logback/logback-classic/1.5.11/logback-classic-1.5.11.jar:/Users/Jake/.m2/repository/ch/qos/logback/logback-core/1.5.11/logback-core-1.5.11.jar:/Users/Jake/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/Users/Jake/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/Users/Jake/.m2/repository/org/slf4j/jul-to-slf4j/2.0.16/jul-to-slf4j-2.0.16.jar:/Users/Jake/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/Users/Jake/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.5/spring-boot-starter-json-3.3.5.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.2/jackson-datatype-jdk8-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.2/jackson-datatype-jsr310-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.2/jackson-module-parameter-names-2.17.2.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.5/spring-boot-starter-tomcat-3.3.5.jar:/Users/Jake/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.31/tomcat-embed-core-10.1.31.jar:/Users/Jake/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.31/tomcat-embed-websocket-10.1.31.jar:/Users/Jake/.m2/repository/org/springframework/spring-web/6.1.14/spring-web-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-beans/6.1.14/spring-beans-6.1.14.jar:/Users/Jake/.m2/repository/io/micrometer/micrometer-observation/1.13.6/micrometer-observation-1.13.6.jar:/Users/Jake/.m2/repository/io/micrometer/micrometer-commons/1.13.6/micrometer-commons-1.13.6.jar:/Users/Jake/.m2/repository/org/springframework/spring-webmvc/6.1.14/spring-webmvc-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-aop/6.1.14/spring-aop-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-context/6.1.14/spring-context-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-expression/6.1.14/spring-expression-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.5/spring-boot-starter-validation-3.3.5.jar:/Users/Jake/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.31/tomcat-embed-el-10.1.31.jar:/Users/Jake/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/Users/Jake/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/Users/Jake/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/Users/Jake/.m2/repository/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar:/Users/Jake/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-spring-boot3-starter/3.5.10.1/mybatis-plus-spring-boot3-starter-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus/3.5.10.1/mybatis-plus-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-core/3.5.10.1/mybatis-plus-core-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-annotation/3.5.10.1/mybatis-plus-annotation-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-spring/3.5.10.1/mybatis-plus-spring-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-extension/3.5.10.1/mybatis-plus-extension-3.5.10.1.jar:/Users/Jake/.m2/repository/org/mybatis/mybatis/3.5.19/mybatis-3.5.19.jar:/Users/Jake/.m2/repository/org/mybatis/mybatis-spring/3.0.4/mybatis-spring-3.0.4.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-spring-boot-autoconfigure/3.5.10.1/mybatis-plus-spring-boot-autoconfigure-3.5.10.1.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.5/spring-boot-autoconfigure-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.5/spring-boot-starter-jdbc-3.3.5.jar:/Users/Jake/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/Users/Jake/.m2/repository/org/springframework/spring-jdbc/6.1.14/spring-jdbc-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-tx/6.1.14/spring-tx-6.1.14.jar:/Users/Jake/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.6.0/springdoc-openapi-starter-webmvc-ui-2.6.0.jar:/Users/Jake/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.6.0/springdoc-openapi-starter-webmvc-api-2.6.0.jar:/Users/Jake/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.6.0/springdoc-openapi-starter-common-2.6.0.jar:/Users/Jake/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.22/swagger-core-jakarta-2.2.22.jar:/Users/Jake/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/Users/Jake/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.22/swagger-annotations-jakarta-2.2.22.jar:/Users/Jake/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.22/swagger-models-jakarta-2.2.22.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.2/jackson-dataformat-yaml-2.17.2.jar:/Users/Jake/.m2/repository/org/webjars/swagger-ui/5.17.14/swagger-ui-5.17.14.jar:/Users/Jake/.m2/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.5/spring-boot-starter-test-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-test/3.3.5/spring-boot-test-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.5/spring-boot-test-autoconfigure-3.3.5.jar:/Users/Jake/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/Users/Jake/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/Users/Jake/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/Users/Jake/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/Users/Jake/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/Users/Jake/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/Users/Jake/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/Users/Jake/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/Users/Jake/.m2/repository/net/bytebuddy/byte-buddy/1.14.19/byte-buddy-1.14.19.jar:/Users/Jake/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/Users/Jake/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.5/junit-jupiter-5.10.5.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.5/junit-jupiter-api-5.10.5.jar:/Users/Jake/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/Jake/.m2/repository/org/junit/platform/junit-platform-commons/1.10.5/junit-platform-commons-1.10.5.jar:/Users/Jake/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.5/junit-jupiter-params-5.10.5.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.5/junit-jupiter-engine-5.10.5.jar:/Users/Jake/.m2/repository/org/junit/platform/junit-platform-engine/1.10.5/junit-platform-engine-1.10.5.jar:/Users/Jake/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/Users/Jake/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar:/Users/Jake/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/Jake/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/Users/Jake/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/Users/Jake/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/Jake/.m2/repository/org/springframework/spring-core/6.1.14/spring-core-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-jcl/6.1.14/spring-jcl-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-test/6.1.14/spring-test-6.1.14.jar:/Users/Jake/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:"/>
-    <property name="test" value="AccountControllerApiTest,TaskControllerApiTest"/>
+    <property name="surefire.test.class.path" value="/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/test-classes:/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/classes:/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/common/target/classes:/Users/Jake/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.5/spring-boot-starter-web-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.5/spring-boot-starter-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot/3.3.5/spring-boot-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.5/spring-boot-starter-logging-3.3.5.jar:/Users/Jake/.m2/repository/ch/qos/logback/logback-classic/1.5.11/logback-classic-1.5.11.jar:/Users/Jake/.m2/repository/ch/qos/logback/logback-core/1.5.11/logback-core-1.5.11.jar:/Users/Jake/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/Users/Jake/.m2/repository/org/slf4j/jul-to-slf4j/2.0.16/jul-to-slf4j-2.0.16.jar:/Users/Jake/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/Users/Jake/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.5/spring-boot-starter-json-3.3.5.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.2/jackson-datatype-jdk8-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.2/jackson-datatype-jsr310-2.17.2.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.2/jackson-module-parameter-names-2.17.2.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.5/spring-boot-starter-tomcat-3.3.5.jar:/Users/Jake/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.31/tomcat-embed-core-10.1.31.jar:/Users/Jake/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.31/tomcat-embed-websocket-10.1.31.jar:/Users/Jake/.m2/repository/org/springframework/spring-web/6.1.14/spring-web-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-beans/6.1.14/spring-beans-6.1.14.jar:/Users/Jake/.m2/repository/io/micrometer/micrometer-observation/1.13.6/micrometer-observation-1.13.6.jar:/Users/Jake/.m2/repository/io/micrometer/micrometer-commons/1.13.6/micrometer-commons-1.13.6.jar:/Users/Jake/.m2/repository/org/springframework/spring-webmvc/6.1.14/spring-webmvc-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-aop/6.1.14/spring-aop-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-context/6.1.14/spring-context-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-expression/6.1.14/spring-expression-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.5/spring-boot-starter-validation-3.3.5.jar:/Users/Jake/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.31/tomcat-embed-el-10.1.31.jar:/Users/Jake/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/Users/Jake/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/Users/Jake/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/Users/Jake/.m2/repository/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar:/Users/Jake/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-spring-boot3-starter/3.5.10.1/mybatis-plus-spring-boot3-starter-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus/3.5.10.1/mybatis-plus-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-core/3.5.10.1/mybatis-plus-core-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-annotation/3.5.10.1/mybatis-plus-annotation-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-spring/3.5.10.1/mybatis-plus-spring-3.5.10.1.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-extension/3.5.10.1/mybatis-plus-extension-3.5.10.1.jar:/Users/Jake/.m2/repository/org/mybatis/mybatis/3.5.19/mybatis-3.5.19.jar:/Users/Jake/.m2/repository/org/mybatis/mybatis-spring/3.0.4/mybatis-spring-3.0.4.jar:/Users/Jake/.m2/repository/com/baomidou/mybatis-plus-spring-boot-autoconfigure/3.5.10.1/mybatis-plus-spring-boot-autoconfigure-3.5.10.1.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.5/spring-boot-autoconfigure-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.5/spring-boot-starter-jdbc-3.3.5.jar:/Users/Jake/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/Users/Jake/.m2/repository/org/springframework/spring-jdbc/6.1.14/spring-jdbc-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-tx/6.1.14/spring-tx-6.1.14.jar:/Users/Jake/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.6.0/springdoc-openapi-starter-webmvc-ui-2.6.0.jar:/Users/Jake/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.6.0/springdoc-openapi-starter-webmvc-api-2.6.0.jar:/Users/Jake/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.6.0/springdoc-openapi-starter-common-2.6.0.jar:/Users/Jake/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.22/swagger-core-jakarta-2.2.22.jar:/Users/Jake/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/Users/Jake/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.22/swagger-annotations-jakarta-2.2.22.jar:/Users/Jake/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.22/swagger-models-jakarta-2.2.22.jar:/Users/Jake/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.2/jackson-dataformat-yaml-2.17.2.jar:/Users/Jake/.m2/repository/org/webjars/swagger-ui/5.17.14/swagger-ui-5.17.14.jar:/Users/Jake/.m2/repository/com/huaweicloud/esdk-obs-java-bundle/3.23.9/esdk-obs-java-bundle-3.23.9.jar:/Users/Jake/.m2/repository/org/apache/logging/log4j/log4j-core/2.23.1/log4j-core-2.23.1.jar:/Users/Jake/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/Users/Jake/.m2/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.5/spring-boot-starter-test-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-test/3.3.5/spring-boot-test-3.3.5.jar:/Users/Jake/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.5/spring-boot-test-autoconfigure-3.3.5.jar:/Users/Jake/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/Users/Jake/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/Users/Jake/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/Users/Jake/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/Users/Jake/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/Users/Jake/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/Users/Jake/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/Users/Jake/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/Users/Jake/.m2/repository/net/bytebuddy/byte-buddy/1.14.19/byte-buddy-1.14.19.jar:/Users/Jake/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/Users/Jake/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.5/junit-jupiter-5.10.5.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.5/junit-jupiter-api-5.10.5.jar:/Users/Jake/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/Jake/.m2/repository/org/junit/platform/junit-platform-commons/1.10.5/junit-platform-commons-1.10.5.jar:/Users/Jake/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.5/junit-jupiter-params-5.10.5.jar:/Users/Jake/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.5/junit-jupiter-engine-5.10.5.jar:/Users/Jake/.m2/repository/org/junit/platform/junit-platform-engine/1.10.5/junit-platform-engine-1.10.5.jar:/Users/Jake/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/Users/Jake/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar:/Users/Jake/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/Jake/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/Users/Jake/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/Users/Jake/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/Jake/.m2/repository/org/springframework/spring-core/6.1.14/spring-core-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-jcl/6.1.14/spring-jcl-6.1.14.jar:/Users/Jake/.m2/repository/org/springframework/spring-test/6.1.14/spring-test-6.1.14.jar:/Users/Jake/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/Users/Jake"/>
     <property name="user.language" value="zh"/>
@@ -32,7 +31,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="FILE_LOG_CHARSET" value="UTF-8"/>
     <property name="java.awt.headless" value="true"/>
-    <property name="surefire.real.class.path" value="/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/surefire/surefirebooter-20260221004001057_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master/target/surefire/surefirebooter-20260222005917797_3.jar"/>
     <property name="user.script" value="Hans"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.8.1+1"/>
@@ -41,8 +40,8 @@
     <property name="os.version" value="15.6"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
-    <property name="surefire.failIfNoSpecifiedTests" value="false"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="skipTests" value="false"/>
     <property name="java.vendor.version" value="Temurin-17.0.8.1+1"/>
     <property name="localRepository" value="/Users/Jake/.m2/repository"/>
     <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
@@ -52,7 +51,7 @@
     <property name="user.dir" value="/Users/Jake/Documents/Code/HuaweiCloud-OBS-Concurrent-Download-Tool/master"/>
     <property name="os.arch" value="aarch64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="PID" value="31345"/>
+    <property name="PID" value="87760"/>
     <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
     <property name="native.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/Jake/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
@@ -63,335 +62,527 @@
     <property name="java.class.version" value="61.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[obsdl-master] "/>
   </properties>
-  <testcase name="getTaskAndListObjectsReturnsExpectedPayload" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.051">
-    <system-out><![CDATA[2026-02-21T00:40:14.338+08:00  INFO 31345 --- [obsdl-master] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.obsdl.master.controller.TaskControllerApiTest]: TaskControllerApiTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-02-21T00:40:14.340+08:00  INFO 31345 --- [obsdl-master] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.obsdl.master.MasterApplication for test class com.obsdl.master.controller.TaskControllerApiTest
+  <testcase name="retryFromTaskCreatesNewTaskWithOnlyFailedObjects" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.071">
+    <system-out><![CDATA[2026-02-22T00:59:31.477+08:00  INFO 87760 --- [obsdl-master] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.obsdl.master.controller.TaskControllerApiTest]: TaskControllerApiTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-02-22T00:59:31.478+08:00  INFO 87760 --- [obsdl-master] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.obsdl.master.MasterApplication for test class com.obsdl.master.controller.TaskControllerApiTest
 Creating a new SqlSession
-Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10b5ff4d]
-JDBC Connection [HikariProxyConnection@31497227 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5bfdc92b]
+JDBC Connection [HikariProxyConnection@1439007204 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
 ==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
-==> Parameters: 4(Long)
+==> Parameters: 5(Long)
 <==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
-<==        Row: 4, acc-query, ak-query, sk-query, obs-query.example.com, bucket-default, 2026-02-21 00:40:14.34617, 2026-02-21 00:40:14.34617
+<==        Row: 5, acc-retry, ak-retry, sk-retry, obs-retry.example.com, bucket-default, 2026-02-22 00:59:31.483926, 2026-02-22 00:59:31.483926
 <==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10b5ff4d]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10b5ff4d] from current transaction
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5bfdc92b]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5bfdc92b] from current transaction
 ==>  Preparing: INSERT INTO download_task ( account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-==> Parameters: 4(Long), bucket-main(String), 4(Integer), 2(Integer), 0(Integer), CREATED(String), 2026-02-21T00:40:14.363964(LocalDateTime), 2026-02-21T00:40:14.363964(LocalDateTime)
+==> Parameters: 5(Long), bucket-main(String), 4(Integer), 2(Integer), 0(Integer), CREATED(String), 2026-02-22T00:59:31.498229(LocalDateTime), 2026-02-22T00:59:31.498229(LocalDateTime)
 <==    Updates: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10b5ff4d]
-JDBC Connection [HikariProxyConnection@31497227 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5bfdc92b]
+JDBC Connection [HikariProxyConnection@1439007204 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
 ==>  Preparing: INSERT INTO task_object ( task_id, object_key, size, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ? )
-==> Parameters: 1003(Long), obj-a.txt(String), 0(Long), PENDING(String), 2026-02-21T00:40:14.363964(LocalDateTime), 2026-02-21T00:40:14.363964(LocalDateTime)
-==> Parameters: 1003(Long), obj-b.txt(String), 0(Long), PENDING(String), 2026-02-21T00:40:14.363964(LocalDateTime), 2026-02-21T00:40:14.363964(LocalDateTime)
-Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10b5ff4d]
-Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10b5ff4d]
-Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10b5ff4d]
+==> Parameters: 1003(Long), ok-file.txt(String), 0(Long), PENDING(String), 2026-02-22T00:59:31.498229(LocalDateTime), 2026-02-22T00:59:31.498229(LocalDateTime)
+==> Parameters: 1003(Long), failed-file.txt(String), 0(Long), PENDING(String), 2026-02-22T00:59:31.498229(LocalDateTime), 2026-02-22T00:59:31.498229(LocalDateTime)
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5bfdc92b]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5bfdc92b]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5bfdc92b]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@45964b9e] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@376067673 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e51ede1]
+JDBC Connection [HikariProxyConnection@687055384 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
 ==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
 ==> Parameters: 1003(Long)
 <==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
-<==        Row: 1003, 4, bucket-main, 4, 2, 0, CREATED, 2026-02-21 00:40:14.363964, 2026-02-21 00:40:14.363964
+<==        Row: 1003, 5, bucket-main, 4, 2, 0, CREATED, 2026-02-22 00:59:31.498229, 2026-02-22 00:59:31.498229
 <==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@45964b9e]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@a72925] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@1340777656 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
-==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
-==> Parameters: 1003(Long)
-<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
-<==        Row: 1003, 4, bucket-main, 4, 2, 0, CREATED, 2026-02-21 00:40:14.363964, 2026-02-21 00:40:14.363964
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e51ede1]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e51ede1] from current transaction
+==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
+==> Parameters: 5(Long)
+<==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
+<==        Row: 5, acc-retry, ak-retry, sk-retry, obs-retry.example.com, bucket-default, 2026-02-22 00:59:31.483926, 2026-02-22 00:59:31.483926
 <==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@a72925]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4f0cdd0f] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@2004020264 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
-==>  Preparing: SELECT id,task_id,object_key,size,status,leased_by,etag,created_at,updated_at FROM task_object WHERE (task_id = ?)
-==> Parameters: 1003(Long)
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e51ede1]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e51ede1] from current transaction
+==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND status = 'PENDING' ORDER BY id LIMIT ? FOR UPDATE
+==> Parameters: 1003(Long), 2(Integer)
 <==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
-<==        Row: 2004, 1003, obj-a.txt, 0, PENDING, null, null, 2026-02-21 00:40:14.363964, 2026-02-21 00:40:14.363964
-<==        Row: 2005, 1003, obj-b.txt, 0, PENDING, null, null, 2026-02-21 00:40:14.363964, 2026-02-21 00:40:14.363964
+<==        Row: 2004, 1003, ok-file.txt, 0, PENDING, null, null, 2026-02-22 00:59:31.498229, 2026-02-22 00:59:31.498229
+<==        Row: 2005, 1003, failed-file.txt, 0, PENDING, null, null, 2026-02-22 00:59:31.498229, 2026-02-22 00:59:31.498229
 <==      Total: 2
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4f0cdd0f]
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e51ede1]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e51ede1] from current transaction
+==>  Preparing: UPDATE task_object SET status = 'LEASED', leased_by = ?, updated_at = NOW() WHERE task_id = ? AND id IN ( ? , ? )
+==> Parameters: worker-retry(String), 1003(Long), 2004(Long), 2005(Long)
+<==    Updates: 2
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e51ede1]
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e51ede1]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e51ede1]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e51ede1]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7e615c6a] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@912443527 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f]
+JDBC Connection [HikariProxyConnection@1430405516 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
 ==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
 ==> Parameters: 1003(Long)
 <==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
-<==        Row: 1003, 4, bucket-main, 4, 2, 0, CREATED, 2026-02-21 00:40:14.363964, 2026-02-21 00:40:14.363964
+<==        Row: 1003, 5, bucket-main, 4, 2, 0, CREATED, 2026-02-22 00:59:31.498229, 2026-02-22 00:59:31.498229
 <==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7e615c6a]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@912a644] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@1200408049 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
-==>  Preparing: SELECT id,task_id,object_key,size,status,leased_by,etag,created_at,updated_at FROM task_object WHERE (task_id = ?)
-==> Parameters: 1003(Long)
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f] from current transaction
+==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND object_key = ? FOR UPDATE
+==> Parameters: 1003(Long), ok-file.txt(String)
 <==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
-<==        Row: 2004, 1003, obj-a.txt, 0, PENDING, null, null, 2026-02-21 00:40:14.363964, 2026-02-21 00:40:14.363964
-<==        Row: 2005, 1003, obj-b.txt, 0, PENDING, null, null, 2026-02-21 00:40:14.363964, 2026-02-21 00:40:14.363964
-<==      Total: 2
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@912a644]
+<==        Row: 2004, 1003, ok-file.txt, 0, LEASED, worker-retry, null, 2026-02-22 00:59:31.498229, 2026-02-22 00:59:31.521225
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f] from current transaction
+==>  Preparing: UPDATE task_object SET task_id=?, object_key=?, size=?, status=?, leased_by=?, created_at=?, updated_at=? WHERE id=?
+==> Parameters: 1003(Long), ok-file.txt(String), 0(Long), DONE(String), worker-retry(String), 2026-02-22T00:59:31.498229(LocalDateTime), 2026-02-22T00:59:31.521225(LocalDateTime), 2004(Long)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f] from current transaction
+==>  Preparing: UPDATE download_task SET done_objects = done_objects + 1, updated_at = NOW() WHERE id = ?
+==> Parameters: 1003(Long)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f] from current transaction
+==>  Preparing: UPDATE download_task SET status = 'DONE', updated_at = NOW() WHERE id = ? AND done_objects = total_objects AND status <> 'DONE'
+==> Parameters: 1003(Long)
+<==    Updates: 0
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f]
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33197c2f]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46146832]
+JDBC Connection [HikariProxyConnection@1970665441 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
+==> Parameters: 1003(Long)
+<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
+<==        Row: 1003, 5, bucket-main, 4, 2, 1, CREATED, 2026-02-22 00:59:31.498229, 2026-02-22 00:59:31.535542
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46146832]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46146832] from current transaction
+==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND object_key = ? FOR UPDATE
+==> Parameters: 1003(Long), failed-file.txt(String)
+<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
+<==        Row: 2005, 1003, failed-file.txt, 0, LEASED, worker-retry, null, 2026-02-22 00:59:31.498229, 2026-02-22 00:59:31.521225
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46146832]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46146832] from current transaction
+==>  Preparing: UPDATE task_object SET task_id=?, object_key=?, size=?, status=?, leased_by=?, created_at=?, updated_at=? WHERE id=?
+==> Parameters: 1003(Long), failed-file.txt(String), 0(Long), FAILED(String), worker-retry(String), 2026-02-22T00:59:31.498229(LocalDateTime), 2026-02-22T00:59:31.521225(LocalDateTime), 2005(Long)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46146832]
+2026-02-22T00:59:31.540+08:00  WARN 87760 --- [obsdl-master] [           main] com.obsdl.master.service.TaskService     : object reported failed, taskId=1003, objectKey=failed-file.txt, workerId=worker-retry, error=timeout 
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46146832]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46146832]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46146832]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4626f584]
+JDBC Connection [HikariProxyConnection@1045343603 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
+==> Parameters: 1003(Long)
+<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
+<==        Row: 1003, 5, bucket-main, 4, 2, 1, CREATED, 2026-02-22 00:59:31.498229, 2026-02-22 00:59:31.535542
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4626f584]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4626f584] from current transaction
+==>  Preparing: SELECT id,task_id,object_key,size,status,leased_by,etag,created_at,updated_at FROM task_object WHERE (task_id = ? AND status = ?)
+==> Parameters: 1003(Long), FAILED(String)
+<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
+<==        Row: 2005, 1003, failed-file.txt, 0, FAILED, worker-retry, null, 2026-02-22 00:59:31.498229, 2026-02-22 00:59:31.521225
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4626f584]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4626f584] from current transaction
+==>  Preparing: INSERT INTO download_task ( account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: 5(Long), bucket-main(String), 4(Integer), 1(Integer), 0(Integer), CREATED(String), 2026-02-22T00:59:31.545246(LocalDateTime), 2026-02-22T00:59:31.545246(LocalDateTime)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4626f584]
+JDBC Connection [HikariProxyConnection@1045343603 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: INSERT INTO task_object ( task_id, object_key, size, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ? )
+==> Parameters: 1004(Long), failed-file.txt(String), 0(Long), PENDING(String), 2026-02-22T00:59:31.545246(LocalDateTime), 2026-02-22T00:59:31.545246(LocalDateTime)
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4626f584]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4626f584]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4626f584]
 ]]></system-out>
   </testcase>
-  <testcase name="reportFailedMarksObjectFailedWithoutIncreasingDoneCount" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.031">
+  <testcase name="getTaskAndListObjectsReturnsExpectedPayload" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.018">
     <system-out><![CDATA[Creating a new SqlSession
-Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32068aef]
-JDBC Connection [HikariProxyConnection@1530563562 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4df5f119]
+JDBC Connection [HikariProxyConnection@1652008086 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
 ==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
-==> Parameters: 5(Long)
+==> Parameters: 6(Long)
 <==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
-<==        Row: 5, acc-failed, ak-failed, sk-failed, obs-gz.example.com, bucket-default, 2026-02-21 00:40:14.39552, 2026-02-21 00:40:14.39552
+<==        Row: 6, acc-query, ak-query, sk-query, obs-query.example.com, bucket-default, 2026-02-22 00:59:31.555309, 2026-02-22 00:59:31.555309
 <==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32068aef]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32068aef] from current transaction
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4df5f119]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4df5f119] from current transaction
 ==>  Preparing: INSERT INTO download_task ( account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-==> Parameters: 5(Long), bucket-main(String), 4(Integer), 1(Integer), 0(Integer), CREATED(String), 2026-02-21T00:40:14.397935(LocalDateTime), 2026-02-21T00:40:14.397935(LocalDateTime)
+==> Parameters: 6(Long), bucket-main(String), 4(Integer), 2(Integer), 0(Integer), CREATED(String), 2026-02-22T00:59:31.558145(LocalDateTime), 2026-02-22T00:59:31.558145(LocalDateTime)
 <==    Updates: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32068aef]
-JDBC Connection [HikariProxyConnection@1530563562 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4df5f119]
+JDBC Connection [HikariProxyConnection@1652008086 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
 ==>  Preparing: INSERT INTO task_object ( task_id, object_key, size, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ? )
-==> Parameters: 1004(Long), failed-file.txt(String), 0(Long), PENDING(String), 2026-02-21T00:40:14.397935(LocalDateTime), 2026-02-21T00:40:14.397935(LocalDateTime)
-Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32068aef]
-Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32068aef]
-Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32068aef]
+==> Parameters: 1005(Long), obj-a.txt(String), 0(Long), PENDING(String), 2026-02-22T00:59:31.558145(LocalDateTime), 2026-02-22T00:59:31.558145(LocalDateTime)
+==> Parameters: 1005(Long), obj-b.txt(String), 0(Long), PENDING(String), 2026-02-22T00:59:31.558145(LocalDateTime), 2026-02-22T00:59:31.558145(LocalDateTime)
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4df5f119]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4df5f119]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4df5f119]
 Creating a new SqlSession
-Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f94afe]
-JDBC Connection [HikariProxyConnection@2102280782 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@61ec2cb5] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@948552515 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
 ==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
-==> Parameters: 1004(Long)
+==> Parameters: 1005(Long)
 <==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
-<==        Row: 1004, 5, bucket-main, 4, 1, 0, CREATED, 2026-02-21 00:40:14.397935, 2026-02-21 00:40:14.397935
+<==        Row: 1005, 6, bucket-main, 4, 2, 0, CREATED, 2026-02-22 00:59:31.558145, 2026-02-22 00:59:31.558145
 <==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f94afe]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f94afe] from current transaction
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@61ec2cb5]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@50e4d8cd] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1261949348 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
+==> Parameters: 1005(Long)
+<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
+<==        Row: 1005, 6, bucket-main, 4, 2, 0, CREATED, 2026-02-22 00:59:31.558145, 2026-02-22 00:59:31.558145
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@50e4d8cd]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70dd79f7] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1323407208 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,task_id,object_key,size,status,leased_by,etag,created_at,updated_at FROM task_object WHERE (task_id = ?)
+==> Parameters: 1005(Long)
+<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
+<==        Row: 2007, 1005, obj-a.txt, 0, PENDING, null, null, 2026-02-22 00:59:31.558145, 2026-02-22 00:59:31.558145
+<==        Row: 2008, 1005, obj-b.txt, 0, PENDING, null, null, 2026-02-22 00:59:31.558145, 2026-02-22 00:59:31.558145
+<==      Total: 2
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70dd79f7]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44f338ec] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1689057490 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
+==> Parameters: 1005(Long)
+<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
+<==        Row: 1005, 6, bucket-main, 4, 2, 0, CREATED, 2026-02-22 00:59:31.558145, 2026-02-22 00:59:31.558145
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44f338ec]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@112a50a1] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1649998289 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,task_id,object_key,size,status,leased_by,etag,created_at,updated_at FROM task_object WHERE (task_id = ?)
+==> Parameters: 1005(Long)
+<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
+<==        Row: 2007, 1005, obj-a.txt, 0, PENDING, null, null, 2026-02-22 00:59:31.558145, 2026-02-22 00:59:31.558145
+<==        Row: 2008, 1005, obj-b.txt, 0, PENDING, null, null, 2026-02-22 00:59:31.558145, 2026-02-22 00:59:31.558145
+<==      Total: 2
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@112a50a1]
+]]></system-out>
+  </testcase>
+  <testcase name="reportFailedMarksObjectFailedWithoutIncreasingDoneCount" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.013">
+    <system-out><![CDATA[Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7fb46c10]
+JDBC Connection [HikariProxyConnection@1766592209 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
 ==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
-==> Parameters: 5(Long)
+==> Parameters: 7(Long)
 <==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
-<==        Row: 5, acc-failed, ak-failed, sk-failed, obs-gz.example.com, bucket-default, 2026-02-21 00:40:14.39552, 2026-02-21 00:40:14.39552
+<==        Row: 7, acc-failed, ak-failed, sk-failed, obs-gz.example.com, bucket-default, 2026-02-22 00:59:31.572864, 2026-02-22 00:59:31.572864
 <==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f94afe]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f94afe] from current transaction
-==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND status = 'PENDING' ORDER BY id LIMIT ? FOR UPDATE
-==> Parameters: 1004(Long), 1(Integer)
-<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
-<==        Row: 2006, 1004, failed-file.txt, 0, PENDING, null, null, 2026-02-21 00:40:14.397935, 2026-02-21 00:40:14.397935
-<==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f94afe]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f94afe] from current transaction
-==>  Preparing: UPDATE task_object SET status = 'LEASED', leased_by = ?, updated_at = NOW() WHERE task_id = ? AND id IN ( ? )
-==> Parameters: worker-fail(String), 1004(Long), 2006(Long)
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7fb46c10]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7fb46c10] from current transaction
+==>  Preparing: INSERT INTO download_task ( account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: 7(Long), bucket-main(String), 4(Integer), 1(Integer), 0(Integer), CREATED(String), 2026-02-22T00:59:31.574628(LocalDateTime), 2026-02-22T00:59:31.574628(LocalDateTime)
 <==    Updates: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f94afe]
-Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f94afe]
-Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f94afe]
-Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f94afe]
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7fb46c10]
+JDBC Connection [HikariProxyConnection@1766592209 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: INSERT INTO task_object ( task_id, object_key, size, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ? )
+==> Parameters: 1006(Long), failed-file.txt(String), 0(Long), PENDING(String), 2026-02-22T00:59:31.574628(LocalDateTime), 2026-02-22T00:59:31.574628(LocalDateTime)
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7fb46c10]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7fb46c10]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7fb46c10]
 Creating a new SqlSession
-Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@589d831e]
-JDBC Connection [HikariProxyConnection@1549086472 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b441609]
+JDBC Connection [HikariProxyConnection@885723920 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
 ==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
-==> Parameters: 1004(Long)
+==> Parameters: 1006(Long)
 <==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
-<==        Row: 1004, 5, bucket-main, 4, 1, 0, CREATED, 2026-02-21 00:40:14.397935, 2026-02-21 00:40:14.397935
+<==        Row: 1006, 7, bucket-main, 4, 1, 0, CREATED, 2026-02-22 00:59:31.574628, 2026-02-22 00:59:31.574628
 <==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@589d831e]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@589d831e] from current transaction
-==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND object_key = ? FOR UPDATE
-==> Parameters: 1004(Long), failed-file.txt(String)
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b441609]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b441609] from current transaction
+==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
+==> Parameters: 7(Long)
+<==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
+<==        Row: 7, acc-failed, ak-failed, sk-failed, obs-gz.example.com, bucket-default, 2026-02-22 00:59:31.572864, 2026-02-22 00:59:31.572864
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b441609]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b441609] from current transaction
+==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND status = 'PENDING' ORDER BY id LIMIT ? FOR UPDATE
+==> Parameters: 1006(Long), 1(Integer)
 <==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
-<==        Row: 2006, 1004, failed-file.txt, 0, LEASED, worker-fail, null, 2026-02-21 00:40:14.397935, 2026-02-21 00:40:14.407184
+<==        Row: 2009, 1006, failed-file.txt, 0, PENDING, null, null, 2026-02-22 00:59:31.574628, 2026-02-22 00:59:31.574628
 <==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@589d831e]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@589d831e] from current transaction
-==>  Preparing: UPDATE task_object SET task_id=?, object_key=?, size=?, status=?, leased_by=?, created_at=?, updated_at=? WHERE id=?
-==> Parameters: 1004(Long), failed-file.txt(String), 0(Long), FAILED(String), worker-fail(String), 2026-02-21T00:40:14.397935(LocalDateTime), 2026-02-21T00:40:14.407184(LocalDateTime), 2006(Long)
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b441609]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b441609] from current transaction
+==>  Preparing: UPDATE task_object SET status = 'LEASED', leased_by = ?, updated_at = NOW() WHERE task_id = ? AND id IN ( ? )
+==> Parameters: worker-fail(String), 1006(Long), 2009(Long)
 <==    Updates: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@589d831e]
-2026-02-21T00:40:14.418+08:00  WARN 31345 --- [obsdl-master] [           main] com.obsdl.master.service.TaskService     : object reported failed, taskId=1004, objectKey=failed-file.txt, workerId=worker-fail, error=network timeout 
-Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@589d831e]
-Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@589d831e]
-Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@589d831e]
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b441609]
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b441609]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b441609]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b441609]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@da4c5cb]
+JDBC Connection [HikariProxyConnection@1368568577 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
+==> Parameters: 1006(Long)
+<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
+<==        Row: 1006, 7, bucket-main, 4, 1, 0, CREATED, 2026-02-22 00:59:31.574628, 2026-02-22 00:59:31.574628
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@da4c5cb]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@da4c5cb] from current transaction
+==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND object_key = ? FOR UPDATE
+==> Parameters: 1006(Long), failed-file.txt(String)
+<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
+<==        Row: 2009, 1006, failed-file.txt, 0, LEASED, worker-fail, null, 2026-02-22 00:59:31.574628, 2026-02-22 00:59:31.578791
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@da4c5cb]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@da4c5cb] from current transaction
+==>  Preparing: UPDATE task_object SET task_id=?, object_key=?, size=?, status=?, leased_by=?, created_at=?, updated_at=? WHERE id=?
+==> Parameters: 1006(Long), failed-file.txt(String), 0(Long), FAILED(String), worker-fail(String), 2026-02-22T00:59:31.574628(LocalDateTime), 2026-02-22T00:59:31.578791(LocalDateTime), 2009(Long)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@da4c5cb]
+2026-02-22T00:59:31.582+08:00  WARN 87760 --- [obsdl-master] [           main] com.obsdl.master.service.TaskService     : object reported failed, taskId=1006, objectKey=failed-file.txt, workerId=worker-fail, error=network timeout 
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@da4c5cb]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@da4c5cb]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@da4c5cb]
 ]]></system-out>
   </testcase>
   <testcase name="leaseTaskUpdatesObjectLeaseFieldsAndReturnsCredentials" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.013">
     <system-out><![CDATA[Creating a new SqlSession
-Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3472f3ab]
-JDBC Connection [HikariProxyConnection@522491865 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
-==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
-==> Parameters: 6(Long)
-<==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
-<==        Row: 6, acc-lease, ak-lease, sk-lease, obs-hk.example.com, bucket-default, 2026-02-21 00:40:14.427031, 2026-02-21 00:40:14.427031
-<==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3472f3ab]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3472f3ab] from current transaction
-==>  Preparing: INSERT INTO download_task ( account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-==> Parameters: 6(Long), bucket-main(String), 4(Integer), 2(Integer), 0(Integer), CREATED(String), 2026-02-21T00:40:14.429279(LocalDateTime), 2026-02-21T00:40:14.429279(LocalDateTime)
-<==    Updates: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3472f3ab]
-JDBC Connection [HikariProxyConnection@522491865 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
-==>  Preparing: INSERT INTO task_object ( task_id, object_key, size, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ? )
-==> Parameters: 1005(Long), file-1.txt(String), 0(Long), PENDING(String), 2026-02-21T00:40:14.429279(LocalDateTime), 2026-02-21T00:40:14.429279(LocalDateTime)
-==> Parameters: 1005(Long), file-2.txt(String), 0(Long), PENDING(String), 2026-02-21T00:40:14.429279(LocalDateTime), 2026-02-21T00:40:14.429279(LocalDateTime)
-Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3472f3ab]
-Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3472f3ab]
-Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3472f3ab]
-Creating a new SqlSession
-Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@406decb2]
-JDBC Connection [HikariProxyConnection@1823741948 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
-==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
-==> Parameters: 1005(Long)
-<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
-<==        Row: 1005, 6, bucket-main, 4, 2, 0, CREATED, 2026-02-21 00:40:14.429279, 2026-02-21 00:40:14.429279
-<==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@406decb2]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@406decb2] from current transaction
-==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
-==> Parameters: 6(Long)
-<==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
-<==        Row: 6, acc-lease, ak-lease, sk-lease, obs-hk.example.com, bucket-default, 2026-02-21 00:40:14.427031, 2026-02-21 00:40:14.427031
-<==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@406decb2]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@406decb2] from current transaction
-==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND status = 'PENDING' ORDER BY id LIMIT ? FOR UPDATE
-==> Parameters: 1005(Long), 1(Integer)
-<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
-<==        Row: 2007, 1005, file-1.txt, 0, PENDING, null, null, 2026-02-21 00:40:14.429279, 2026-02-21 00:40:14.429279
-<==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@406decb2]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@406decb2] from current transaction
-==>  Preparing: UPDATE task_object SET status = 'LEASED', leased_by = ?, updated_at = NOW() WHERE task_id = ? AND id IN ( ? )
-==> Parameters: worker-a(String), 1005(Long), 2007(Long)
-<==    Updates: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@406decb2]
-Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@406decb2]
-Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@406decb2]
-Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@406decb2]
-]]></system-out>
-  </testcase>
-  <testcase name="createTaskReturnsNotFoundWhenAccountDoesNotExist" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.005">
-    <system-out><![CDATA[Creating a new SqlSession
-Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5ab3f611]
-JDBC Connection [HikariProxyConnection@1152013701 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
-==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
-==> Parameters: 999999(Long)
-<==      Total: 0
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5ab3f611]
-Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5ab3f611]
-Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5ab3f611]
-]]></system-out>
-  </testcase>
-  <testcase name="reportDoneUpdatesObjectAndTaskCompletionFields" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.017">
-    <system-out><![CDATA[Creating a new SqlSession
-Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@786cc1df]
-JDBC Connection [HikariProxyConnection@507126135 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
-==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
-==> Parameters: 7(Long)
-<==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
-<==        Row: 7, acc-done, ak-done, sk-done, obs-sz.example.com, bucket-default, 2026-02-21 00:40:14.446734, 2026-02-21 00:40:14.446734
-<==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@786cc1df]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@786cc1df] from current transaction
-==>  Preparing: INSERT INTO download_task ( account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-==> Parameters: 7(Long), bucket-main(String), 4(Integer), 1(Integer), 0(Integer), CREATED(String), 2026-02-21T00:40:14.448690(LocalDateTime), 2026-02-21T00:40:14.448690(LocalDateTime)
-<==    Updates: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@786cc1df]
-JDBC Connection [HikariProxyConnection@507126135 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
-==>  Preparing: INSERT INTO task_object ( task_id, object_key, size, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ? )
-==> Parameters: 1006(Long), done-file.txt(String), 0(Long), PENDING(String), 2026-02-21T00:40:14.448690(LocalDateTime), 2026-02-21T00:40:14.448690(LocalDateTime)
-Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@786cc1df]
-Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@786cc1df]
-Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@786cc1df]
-Creating a new SqlSession
-Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1755aee6]
-JDBC Connection [HikariProxyConnection@283430552 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
-==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
-==> Parameters: 1006(Long)
-<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
-<==        Row: 1006, 7, bucket-main, 4, 1, 0, CREATED, 2026-02-21 00:40:14.44869, 2026-02-21 00:40:14.44869
-<==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1755aee6]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1755aee6] from current transaction
-==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
-==> Parameters: 7(Long)
-<==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
-<==        Row: 7, acc-done, ak-done, sk-done, obs-sz.example.com, bucket-default, 2026-02-21 00:40:14.446734, 2026-02-21 00:40:14.446734
-<==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1755aee6]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1755aee6] from current transaction
-==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND status = 'PENDING' ORDER BY id LIMIT ? FOR UPDATE
-==> Parameters: 1006(Long), 1(Integer)
-<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
-<==        Row: 2009, 1006, done-file.txt, 0, PENDING, null, null, 2026-02-21 00:40:14.44869, 2026-02-21 00:40:14.44869
-<==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1755aee6]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1755aee6] from current transaction
-==>  Preparing: UPDATE task_object SET status = 'LEASED', leased_by = ?, updated_at = NOW() WHERE task_id = ? AND id IN ( ? )
-==> Parameters: worker-done(String), 1006(Long), 2009(Long)
-<==    Updates: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1755aee6]
-Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1755aee6]
-Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1755aee6]
-Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1755aee6]
-Creating a new SqlSession
-Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55]
-JDBC Connection [HikariProxyConnection@710041480 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
-==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
-==> Parameters: 1006(Long)
-<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
-<==        Row: 1006, 7, bucket-main, 4, 1, 0, CREATED, 2026-02-21 00:40:14.44869, 2026-02-21 00:40:14.44869
-<==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55] from current transaction
-==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND object_key = ? FOR UPDATE
-==> Parameters: 1006(Long), done-file.txt(String)
-<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
-<==        Row: 2009, 1006, done-file.txt, 0, LEASED, worker-done, null, 2026-02-21 00:40:14.44869, 2026-02-21 00:40:14.454365
-<==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55] from current transaction
-==>  Preparing: UPDATE task_object SET task_id=?, object_key=?, size=?, status=?, leased_by=?, created_at=?, updated_at=? WHERE id=?
-==> Parameters: 1006(Long), done-file.txt(String), 0(Long), DONE(String), worker-done(String), 2026-02-21T00:40:14.448690(LocalDateTime), 2026-02-21T00:40:14.454365(LocalDateTime), 2009(Long)
-<==    Updates: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55] from current transaction
-==>  Preparing: UPDATE download_task SET done_objects = done_objects + 1, updated_at = NOW() WHERE id = ?
-==> Parameters: 1006(Long)
-<==    Updates: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55] from current transaction
-==>  Preparing: UPDATE download_task SET status = 'DONE', updated_at = NOW() WHERE id = ? AND done_objects = total_objects AND status <> 'DONE'
-==> Parameters: 1006(Long)
-<==    Updates: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55]
-Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55]
-Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55]
-Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10466c55]
-]]></system-out>
-  </testcase>
-  <testcase name="createTaskPersistsExpectedDatabaseFields" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.012">
-    <system-out><![CDATA[Creating a new SqlSession
-Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@447630c4]
-JDBC Connection [HikariProxyConnection@80261050 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a85454b]
+JDBC Connection [HikariProxyConnection@1939597292 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
 ==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
 ==> Parameters: 8(Long)
 <==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
-<==        Row: 8, acc-main, ak-main, sk-main, obs-cn.example.com, bucket-default, 2026-02-21 00:40:14.465954, 2026-02-21 00:40:14.465954
+<==        Row: 8, acc-lease, ak-lease, sk-lease, obs-hk.example.com, bucket-default, 2026-02-22 00:59:31.58633, 2026-02-22 00:59:31.58633
 <==      Total: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@447630c4]
-Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@447630c4] from current transaction
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a85454b]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a85454b] from current transaction
 ==>  Preparing: INSERT INTO download_task ( account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-==> Parameters: 8(Long), bucket-main(String), 4(Integer), 2(Integer), 0(Integer), CREATED(String), 2026-02-21T00:40:14.467789(LocalDateTime), 2026-02-21T00:40:14.467789(LocalDateTime)
+==> Parameters: 8(Long), bucket-main(String), 4(Integer), 2(Integer), 0(Integer), CREATED(String), 2026-02-22T00:59:31.588530(LocalDateTime), 2026-02-22T00:59:31.588530(LocalDateTime)
 <==    Updates: 1
-Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@447630c4]
-JDBC Connection [HikariProxyConnection@80261050 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a85454b]
+JDBC Connection [HikariProxyConnection@1939597292 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
 ==>  Preparing: INSERT INTO task_object ( task_id, object_key, size, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ? )
-==> Parameters: 1007(Long), file-1.txt(String), 0(Long), PENDING(String), 2026-02-21T00:40:14.467789(LocalDateTime), 2026-02-21T00:40:14.467789(LocalDateTime)
-==> Parameters: 1007(Long), file-2.txt(String), 0(Long), PENDING(String), 2026-02-21T00:40:14.467789(LocalDateTime), 2026-02-21T00:40:14.467789(LocalDateTime)
-Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@447630c4]
-Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@447630c4]
-Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@447630c4]
+==> Parameters: 1007(Long), file-1.txt(String), 0(Long), PENDING(String), 2026-02-22T00:59:31.588530(LocalDateTime), 2026-02-22T00:59:31.588530(LocalDateTime)
+==> Parameters: 1007(Long), file-2.txt(String), 0(Long), PENDING(String), 2026-02-22T00:59:31.588530(LocalDateTime), 2026-02-22T00:59:31.588530(LocalDateTime)
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a85454b]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a85454b]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a85454b]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54fffa5a]
+JDBC Connection [HikariProxyConnection@1176189130 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
+==> Parameters: 1007(Long)
+<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
+<==        Row: 1007, 8, bucket-main, 4, 2, 0, CREATED, 2026-02-22 00:59:31.58853, 2026-02-22 00:59:31.58853
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54fffa5a]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54fffa5a] from current transaction
+==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
+==> Parameters: 8(Long)
+<==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
+<==        Row: 8, acc-lease, ak-lease, sk-lease, obs-hk.example.com, bucket-default, 2026-02-22 00:59:31.58633, 2026-02-22 00:59:31.58633
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54fffa5a]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54fffa5a] from current transaction
+==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND status = 'PENDING' ORDER BY id LIMIT ? FOR UPDATE
+==> Parameters: 1007(Long), 1(Integer)
+<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
+<==        Row: 2010, 1007, file-1.txt, 0, PENDING, null, null, 2026-02-22 00:59:31.58853, 2026-02-22 00:59:31.58853
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54fffa5a]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54fffa5a] from current transaction
+==>  Preparing: UPDATE task_object SET status = 'LEASED', leased_by = ?, updated_at = NOW() WHERE task_id = ? AND id IN ( ? )
+==> Parameters: worker-a(String), 1007(Long), 2010(Long)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54fffa5a]
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54fffa5a]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54fffa5a]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54fffa5a]
+]]></system-out>
+  </testcase>
+  <testcase name="createTaskReturnsNotFoundWhenAccountDoesNotExist" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.004">
+    <system-out><![CDATA[Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2082e0e4]
+JDBC Connection [HikariProxyConnection@701379561 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
+==> Parameters: 999999(Long)
+<==      Total: 0
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2082e0e4]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2082e0e4]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2082e0e4]
+]]></system-out>
+  </testcase>
+  <testcase name="reportDoneUpdatesObjectAndTaskCompletionFields" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.014">
+    <system-out><![CDATA[Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c945ee7]
+JDBC Connection [HikariProxyConnection@384537519 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
+==> Parameters: 9(Long)
+<==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
+<==        Row: 9, acc-done, ak-done, sk-done, obs-sz.example.com, bucket-default, 2026-02-22 00:59:31.604899, 2026-02-22 00:59:31.604899
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c945ee7]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c945ee7] from current transaction
+==>  Preparing: INSERT INTO download_task ( account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: 9(Long), bucket-main(String), 4(Integer), 1(Integer), 0(Integer), CREATED(String), 2026-02-22T00:59:31.606945(LocalDateTime), 2026-02-22T00:59:31.606945(LocalDateTime)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c945ee7]
+JDBC Connection [HikariProxyConnection@384537519 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: INSERT INTO task_object ( task_id, object_key, size, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ? )
+==> Parameters: 1008(Long), done-file.txt(String), 0(Long), PENDING(String), 2026-02-22T00:59:31.606945(LocalDateTime), 2026-02-22T00:59:31.606945(LocalDateTime)
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c945ee7]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c945ee7]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c945ee7]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1932ad2c]
+JDBC Connection [HikariProxyConnection@1387567249 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
+==> Parameters: 1008(Long)
+<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
+<==        Row: 1008, 9, bucket-main, 4, 1, 0, CREATED, 2026-02-22 00:59:31.606945, 2026-02-22 00:59:31.606945
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1932ad2c]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1932ad2c] from current transaction
+==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
+==> Parameters: 9(Long)
+<==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
+<==        Row: 9, acc-done, ak-done, sk-done, obs-sz.example.com, bucket-default, 2026-02-22 00:59:31.604899, 2026-02-22 00:59:31.604899
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1932ad2c]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1932ad2c] from current transaction
+==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND status = 'PENDING' ORDER BY id LIMIT ? FOR UPDATE
+==> Parameters: 1008(Long), 1(Integer)
+<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
+<==        Row: 2012, 1008, done-file.txt, 0, PENDING, null, null, 2026-02-22 00:59:31.606945, 2026-02-22 00:59:31.606945
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1932ad2c]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1932ad2c] from current transaction
+==>  Preparing: UPDATE task_object SET status = 'LEASED', leased_by = ?, updated_at = NOW() WHERE task_id = ? AND id IN ( ? )
+==> Parameters: worker-done(String), 1008(Long), 2012(Long)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1932ad2c]
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1932ad2c]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1932ad2c]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1932ad2c]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a]
+JDBC Connection [HikariProxyConnection@1383931873 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
+==> Parameters: 1008(Long)
+<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
+<==        Row: 1008, 9, bucket-main, 4, 1, 0, CREATED, 2026-02-22 00:59:31.606945, 2026-02-22 00:59:31.606945
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a] from current transaction
+==>  Preparing: SELECT id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at FROM task_object WHERE task_id = ? AND object_key = ? FOR UPDATE
+==> Parameters: 1008(Long), done-file.txt(String)
+<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
+<==        Row: 2012, 1008, done-file.txt, 0, LEASED, worker-done, null, 2026-02-22 00:59:31.606945, 2026-02-22 00:59:31.612315
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a] from current transaction
+==>  Preparing: UPDATE task_object SET task_id=?, object_key=?, size=?, status=?, leased_by=?, created_at=?, updated_at=? WHERE id=?
+==> Parameters: 1008(Long), done-file.txt(String), 0(Long), DONE(String), worker-done(String), 2026-02-22T00:59:31.606945(LocalDateTime), 2026-02-22T00:59:31.612315(LocalDateTime), 2012(Long)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a] from current transaction
+==>  Preparing: UPDATE download_task SET done_objects = done_objects + 1, updated_at = NOW() WHERE id = ?
+==> Parameters: 1008(Long)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a] from current transaction
+==>  Preparing: UPDATE download_task SET status = 'DONE', updated_at = NOW() WHERE id = ? AND done_objects = total_objects AND status <> 'DONE'
+==> Parameters: 1008(Long)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a]
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75973f7a]
+]]></system-out>
+  </testcase>
+  <testcase name="listTasksViaApiReturnsCreatedTasks" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.01">
+    <system-out><![CDATA[Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@145ef9e8]
+JDBC Connection [HikariProxyConnection@1363879035 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
+==> Parameters: 10(Long)
+<==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
+<==        Row: 10, acc-list, ak-list, sk-list, obs-list.example.com, bucket-default, 2026-02-22 00:59:31.619812, 2026-02-22 00:59:31.619812
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@145ef9e8]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@145ef9e8] from current transaction
+==>  Preparing: INSERT INTO download_task ( account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: 10(Long), bucket-main(String), 4(Integer), 1(Integer), 0(Integer), CREATED(String), 2026-02-22T00:59:31.622084(LocalDateTime), 2026-02-22T00:59:31.622084(LocalDateTime)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@145ef9e8]
+JDBC Connection [HikariProxyConnection@1363879035 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: INSERT INTO task_object ( task_id, object_key, size, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ? )
+==> Parameters: 1009(Long), list-a.txt(String), 0(Long), PENDING(String), 2026-02-22T00:59:31.622084(LocalDateTime), 2026-02-22T00:59:31.622084(LocalDateTime)
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@145ef9e8]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@145ef9e8]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@145ef9e8]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5440a3a] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1203756577 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task ORDER BY id DESC
+==> Parameters: 
+<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
+<==        Row: 1009, 10, bucket-main, 4, 1, 0, CREATED, 2026-02-22 00:59:31.622084, 2026-02-22 00:59:31.622084
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5440a3a]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@20706e70] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1851767440 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,account_id,bucket,concurrency,total_objects,done_objects,status,created_at,updated_at FROM download_task WHERE id=?
+==> Parameters: 1009(Long)
+<==    Columns: id, account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at
+<==        Row: 1009, 10, bucket-main, 4, 1, 0, CREATED, 2026-02-22 00:59:31.622084, 2026-02-22 00:59:31.622084
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@20706e70]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@57283fac] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1299471046 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,task_id,object_key,size,status,leased_by,etag,created_at,updated_at FROM task_object WHERE (task_id = ?)
+==> Parameters: 1009(Long)
+<==    Columns: id, task_id, object_key, size, status, leased_by, etag, created_at, updated_at
+<==        Row: 2013, 1009, list-a.txt, 0, PENDING, null, null, 2026-02-22 00:59:31.622084, 2026-02-22 00:59:31.622084
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@57283fac]
+]]></system-out>
+  </testcase>
+  <testcase name="createTaskPersistsExpectedDatabaseFields" classname="com.obsdl.master.controller.TaskControllerApiTest" time="0.01">
+    <system-out><![CDATA[Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b8f87dc]
+JDBC Connection [HikariProxyConnection@1336606561 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: SELECT id,account_name,access_key,secret_key,endpoint,bucket,created_at,updated_at FROM obs_account WHERE id=?
+==> Parameters: 11(Long)
+<==    Columns: id, account_name, access_key, secret_key, endpoint, bucket, created_at, updated_at
+<==        Row: 11, acc-main, ak-main, sk-main, obs-cn.example.com, bucket-default, 2026-02-22 00:59:31.63077, 2026-02-22 00:59:31.63077
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b8f87dc]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b8f87dc] from current transaction
+==>  Preparing: INSERT INTO download_task ( account_id, bucket, concurrency, total_objects, done_objects, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: 11(Long), bucket-main(String), 4(Integer), 2(Integer), 0(Integer), CREATED(String), 2026-02-22T00:59:31.632606(LocalDateTime), 2026-02-22T00:59:31.632606(LocalDateTime)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b8f87dc]
+JDBC Connection [HikariProxyConnection@1336606561 wrapping conn0: url=jdbc:h2:mem:obsdl user=SA] will be managed by Spring
+==>  Preparing: INSERT INTO task_object ( task_id, object_key, size, status, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ? )
+==> Parameters: 1010(Long), file-1.txt(String), 0(Long), PENDING(String), 2026-02-22T00:59:31.632606(LocalDateTime), 2026-02-22T00:59:31.632606(LocalDateTime)
+==> Parameters: 1010(Long), file-2.txt(String), 0(Long), PENDING(String), 2026-02-22T00:59:31.632606(LocalDateTime), 2026-02-22T00:59:31.632606(LocalDateTime)
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b8f87dc]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b8f87dc]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b8f87dc]
 ]]></system-out>
   </testcase>
 </testsuite>

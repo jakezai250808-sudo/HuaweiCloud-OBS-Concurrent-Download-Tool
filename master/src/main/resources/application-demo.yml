@@ -21,3 +21,8 @@ logging:
     root: INFO
     com.obsdl.master: DEBUG
     com.baomidou.mybatisplus: INFO
+
+obs:
+  browser:
+#    mode: mock
+    mode: real

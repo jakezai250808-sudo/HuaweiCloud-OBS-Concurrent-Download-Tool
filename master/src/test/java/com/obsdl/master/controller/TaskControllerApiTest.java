@@ -162,6 +162,21 @@ class TaskControllerApiTest extends ApiIntegrationTestSupport {
     }
 
     @Test
+    void listTasksViaApiReturnsCreatedTasks() throws Exception {
+        long accountId = insertObsAccount("acc-list", "ak-list", "sk-list", "obs-list.example.com");
+        long taskId = createTask(accountId, "list-a.txt");
+
+        getJson("/api/tasks")
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(0))
+                .andExpect(jsonPath("$.data.length()").value(1))
+                .andExpect(jsonPath("$.data[0].id").value(taskId))
+                .andExpect(jsonPath("$.data[0].accountId").value(accountId))
+                .andExpect(jsonPath("$.data[0].bucket").value("bucket-main"))
+                .andExpect(jsonPath("$.data[0].objects.length()").value(1));
+    }
+
+    @Test
     void createTaskReturnsNotFoundWhenAccountDoesNotExist() throws Exception {
         Map<String, Object> request = Map.of(
                 "accountId", 999999L,
@@ -173,6 +188,56 @@ class TaskControllerApiTest extends ApiIntegrationTestSupport {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.code").value(40403))
                 .andExpect(jsonPath("$.message").value("账号不存在"));
+    }
+
+    @Test
+    void retryFromTaskCreatesNewTaskWithOnlyFailedObjects() throws Exception {
+        long accountId = insertObsAccount("acc-retry", "ak-retry", "sk-retry", "obs-retry.example.com");
+        long sourceTaskId = createTask(accountId, "ok-file.txt", "failed-file.txt");
+
+        postJson("/api/tasks/" + sourceTaskId + "/lease", Map.of("workerId", "worker-retry", "count", 2))
+                .andExpect(status().isOk());
+
+        postJson("/api/tasks/" + sourceTaskId + "/report", Map.of(
+                "workerId", "worker-retry",
+                "objectKey", "ok-file.txt",
+                "status", "done",
+                "errorMessage", ""
+        )).andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(0));
+
+        postJson("/api/tasks/" + sourceTaskId + "/report", Map.of(
+                "workerId", "worker-retry",
+                "objectKey", "failed-file.txt",
+                "status", "failed",
+                "errorMessage", "timeout"
+        )).andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(0));
+
+        MvcResult retryResult = postJson("/api/tasks/" + sourceTaskId + "/retry", Map.of())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(0))
+                .andReturn();
+        long retryTaskId = objectMapper.readTree(retryResult.getResponse().getContentAsString())
+                .path("data").path("taskId").asLong();
+
+        Map<String, Object> retryTask = jdbcTemplate.queryForMap(
+                "SELECT account_id, bucket, total_objects, done_objects, status FROM download_task WHERE id = ?",
+                retryTaskId
+        );
+        assertEquals(accountId, ((Number) retryTask.get("account_id")).longValue());
+        assertEquals("bucket-main", retryTask.get("bucket"));
+        assertEquals(1, ((Number) retryTask.get("total_objects")).intValue());
+        assertEquals(0, ((Number) retryTask.get("done_objects")).intValue());
+        assertEquals("CREATED", retryTask.get("status"));
+
+        List<Map<String, Object>> retryObjects = jdbcTemplate.queryForList(
+                "SELECT object_key, status FROM task_object WHERE task_id = ? ORDER BY id",
+                retryTaskId
+        );
+        assertEquals(1, retryObjects.size());
+        assertEquals("failed-file.txt", retryObjects.get(0).get("object_key"));
+        assertEquals("PENDING", retryObjects.get(0).get("status"));
     }
 
     private long createTask(long accountId, String... objects) throws Exception {

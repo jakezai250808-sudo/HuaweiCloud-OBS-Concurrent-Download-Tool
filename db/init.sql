@@ -53,3 +53,15 @@ CREATE TABLE IF NOT EXISTS worker_node (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY uk_worker_host_port (host, port)
 );
+
+CREATE TABLE IF NOT EXISTS obs_mock_object (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    bucket VARCHAR(128) NOT NULL,
+    object_key VARCHAR(512) NOT NULL,
+    size BIGINT NOT NULL DEFAULT 0,
+    last_modified DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    etag VARCHAR(128),
+    storage_class VARCHAR(64),
+    UNIQUE KEY uk_obs_mock_bucket_object (bucket, object_key),
+    KEY idx_obs_mock_bucket_key (bucket, object_key)
+);

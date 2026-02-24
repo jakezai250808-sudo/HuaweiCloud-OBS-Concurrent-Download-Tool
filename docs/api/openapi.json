@@ -14,7 +14,7 @@
       "get" : {
         "tags" : [ "account-controller" ],
         "summary" : "查询账户列表",
-        "operationId" : "list",
+        "operationId" : "list_1",
         "responses" : {
           "200" : {
             "description" : "OK",
@@ -168,6 +168,23 @@
       }
     },
     "/api/tasks" : {
+      "get" : {
+        "tags" : [ "task-controller" ],
+        "summary" : "查询任务列表",
+        "operationId" : "list",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseListTaskResponse"
+                }
+              }
+            }
+          }
+        }
+      },
       "post" : {
         "tags" : [ "task-controller" ],
         "summary" : "创建下载任务",
@@ -182,6 +199,34 @@
           },
           "required" : true
         },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ApiResponseTaskCreateResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}/retry" : {
+      "post" : {
+        "tags" : [ "task-controller" ],
+        "summary" : "基于已有任务重建重试任务（仅失败对象）",
+        "operationId" : "retry",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK",
@@ -332,13 +377,43 @@
     "/api/obs/objects" : {
       "get" : {
         "tags" : [ "obs-mock-controller" ],
-        "summary" : "列举 Objects（占位）",
-        "description" : "TODO: 接入 OBS Java SDK，返回 bucket 下真实对象列表",
+        "summary" : "列举 Objects（mock）",
+        "description" : "基于 mock 数据按 prefix + delimiter 返回目录与对象",
         "operationId" : "listObjects_1",
         "parameters" : [ {
           "name" : "bucket",
           "in" : "query",
           "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "prefix",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "default" : ""
+          }
+        }, {
+          "name" : "delimiter",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "default" : "/"
+          }
+        }, {
+          "name" : "marker",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "continuationToken",
+          "in" : "query",
+          "required" : false,
           "schema" : {
             "type" : "string"
           }
@@ -349,7 +424,7 @@
             "content" : {
               "*/*" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ApiResponseObjectListResponse"
+                  "$ref" : "#/components/schemas/ApiResponseObsObjectListingResponse"
                 }
               }
             }
@@ -360,9 +435,18 @@
     "/api/obs/buckets" : {
       "get" : {
         "tags" : [ "obs-mock-controller" ],
-        "summary" : "列举 Buckets（占位）",
-        "description" : "TODO: 接入 OBS Java SDK，返回账号下真实 buckets",
+        "summary" : "按账号列举 Buckets",
+        "description" : "从数据库按账号查询 bucket 列表",
         "operationId" : "listBuckets",
+        "parameters" : [ {
+          "name" : "accountId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK",
@@ -719,7 +803,7 @@
           }
         }
       },
-      "ApiResponseTaskResponse" : {
+      "ApiResponseListTaskResponse" : {
         "type" : "object",
         "properties" : {
           "code" : {
@@ -730,7 +814,10 @@
             "type" : "string"
           },
           "data" : {
-            "$ref" : "#/components/schemas/TaskResponse"
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/TaskResponse"
+            }
           }
         }
       },
@@ -778,6 +865,21 @@
           }
         }
       },
+      "ApiResponseTaskResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/TaskResponse"
+          }
+        }
+      },
       "ApiResponseListTaskObjectResponse" : {
         "type" : "object",
         "properties" : {
@@ -796,7 +898,7 @@
           }
         }
       },
-      "ApiResponseObjectListResponse" : {
+      "ApiResponseObsObjectListingResponse" : {
         "type" : "object",
         "properties" : {
           "code" : {
@@ -807,21 +909,74 @@
             "type" : "string"
           },
           "data" : {
-            "$ref" : "#/components/schemas/ObjectListResponse"
+            "$ref" : "#/components/schemas/ObsObjectListingResponse"
           }
         }
       },
-      "ObjectListResponse" : {
+      "ObsDirectoryItemResponse" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "prefix" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ObsObjectItemResponse" : {
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "type" : "string"
+          },
+          "size" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "lastModified" : {
+            "type" : "string"
+          },
+          "etag" : {
+            "type" : "string"
+          },
+          "storageClass" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ObsObjectListingResponse" : {
         "type" : "object",
         "properties" : {
           "bucket" : {
             "type" : "string"
           },
-          "objectKeys" : {
+          "prefix" : {
+            "type" : "string"
+          },
+          "delimiter" : {
+            "type" : "string"
+          },
+          "directories" : {
             "type" : "array",
             "items" : {
-              "type" : "string"
+              "$ref" : "#/components/schemas/ObsDirectoryItemResponse"
             }
+          },
+          "objects" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ObsObjectItemResponse"
+            }
+          },
+          "isTruncated" : {
+            "type" : "boolean"
+          },
+          "nextMarker" : {
+            "type" : "string"
+          },
+          "nextContinuationToken" : {
+            "type" : "string"
           }
         }
       },

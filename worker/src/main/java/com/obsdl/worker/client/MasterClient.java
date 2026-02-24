@@ -45,24 +45,38 @@ public class MasterClient {
         ), new ParameterizedTypeReference<ApiResponse<Object>>() {});
     }
 
-    public List<TaskLeaseObjectResponse> lease() {
-        String path = "/api/tasks/%d/lease".formatted(props.leaseTaskId());
-        ApiResponse<List<TaskLeaseObjectResponse>> response = post(path,
-                new TaskLeaseRequest(props.workerId(), props.leaseBatchSize()),
-                new ParameterizedTypeReference<ApiResponse<List<TaskLeaseObjectResponse>>>() {});
+    public List<MasterTaskResponse> listTasks() {
+        ApiResponse<List<MasterTaskResponse>> response = get(
+                "/api/tasks",
+                new ParameterizedTypeReference<ApiResponse<List<MasterTaskResponse>>>() {}
+        );
+        if (response == null || response.code() == null || response.code() != 0) {
+            return List.of();
+        }
         return Objects.requireNonNullElse(response.data(), List.of());
     }
 
-    public void reportDone(String objectKey) {
-        report(objectKey, "done", null);
+    public List<TaskLeaseObjectResponse> lease(Long taskId) {
+        String path = "/api/tasks/%d/lease".formatted(taskId);
+        ApiResponse<List<TaskLeaseObjectResponse>> response = post(path,
+                new TaskLeaseRequest(props.workerId(), props.leaseBatchSize()),
+                new ParameterizedTypeReference<ApiResponse<List<TaskLeaseObjectResponse>>>() {});
+        if (response == null || response.code() == null || response.code() != 0) {
+            return List.of();
+        }
+        return Objects.requireNonNullElse(response.data(), List.of());
     }
 
-    public void reportFailed(String objectKey, String errorMessage) {
-        report(objectKey, "failed", errorMessage);
+    public void reportDone(Long taskId, String objectKey) {
+        report(taskId, objectKey, "done", null);
     }
 
-    private void report(String objectKey, String status, String errorMessage) {
-        String path = "/api/tasks/%d/report".formatted(props.leaseTaskId());
+    public void reportFailed(Long taskId, String objectKey, String errorMessage) {
+        report(taskId, objectKey, "failed", errorMessage);
+    }
+
+    private void report(Long taskId, String objectKey, String status, String errorMessage) {
+        String path = "/api/tasks/%d/report".formatted(taskId);
         post(path,
                 new TaskReportRequest(props.workerId(), objectKey, status, errorMessage),
                 new ParameterizedTypeReference<ApiResponse<Object>>() {});
@@ -73,6 +87,16 @@ public class MasterClient {
                 props.masterUrl() + path,
                 HttpMethod.POST,
                 new HttpEntity<>(body),
+                type
+        );
+        return entity.getBody();
+    }
+
+    private <R> R get(String path, ParameterizedTypeReference<R> type) {
+        ResponseEntity<R> entity = restTemplate.exchange(
+                props.masterUrl() + path,
+                HttpMethod.GET,
+                HttpEntity.EMPTY,
                 type
         );
         return entity.getBody();

@@ -23,6 +23,7 @@
         <springdoc.version>2.6.0</springdoc.version>
         <okhttp.version>4.12.0</okhttp.version>
         <lombok.version>1.18.38</lombok.version>
+        <obs.sdk.version>3.23.9</obs.sdk.version>
     </properties>
 
     <dependencyManagement>

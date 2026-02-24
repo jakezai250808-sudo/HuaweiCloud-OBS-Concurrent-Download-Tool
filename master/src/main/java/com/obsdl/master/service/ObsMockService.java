@@ -1,76 +1,143 @@
 package com.obsdl.master.service;
 
 import com.obsdl.master.dto.obs.BucketListResponse;
-import com.obsdl.master.dto.obs.ObjectListResponse;
+import com.obsdl.master.dto.obs.ObsDirectoryItemResponse;
+import com.obsdl.master.dto.obs.ObsObjectItemResponse;
+import com.obsdl.master.dto.obs.ObsObjectListingResponse;
+import com.obsdl.master.entity.ObsAccountEntity;
+import com.obsdl.master.entity.ObsMockObjectEntity;
+import com.obsdl.master.exception.BizException;
+import com.obsdl.master.service.crud.ObsAccountCrudService;
+import com.obsdl.master.service.crud.ObsMockObjectCrudService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedHashMap;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 @Service
-public class ObsMockService {
+@ConditionalOnProperty(prefix = "obs.browser", name = "mode", havingValue = "mock", matchIfMissing = true)
+public class ObsMockService implements ObsBrowserService {
 
-    private static final Map<String, List<String>> MOCK_OBJECTS_BY_BUCKET = buildMockData();
+    private static final String DEFAULT_DELIMITER = "/";
+    private static final DateTimeFormatter ISO_8601 = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 
-    public BucketListResponse listBuckets() {
-        return new BucketListResponse(List.copyOf(MOCK_OBJECTS_BY_BUCKET.keySet()));
+    private final ObsAccountCrudService obsAccountCrudService;
+    private final ObsMockObjectCrudService obsMockObjectCrudService;
+
+    public ObsMockService(ObsAccountCrudService obsAccountCrudService,
+                          ObsMockObjectCrudService obsMockObjectCrudService) {
+        this.obsAccountCrudService = obsAccountCrudService;
+        this.obsMockObjectCrudService = obsMockObjectCrudService;
     }
 
-    public ObjectListResponse listObjects(String bucket) {
-        List<String> objectKeys = MOCK_OBJECTS_BY_BUCKET.get(bucket);
-        if (objectKeys == null) {
-            objectKeys = List.of(
-                    "incoming/" + bucket + "/2026/01/summary.csv",
-                    "incoming/" + bucket + "/2026/01/events-0001.json",
-                    "incoming/" + bucket + "/2026/01/events-0002.json",
-                    "incoming/" + bucket + "/readme.txt"
-            );
+    @Override
+    public BucketListResponse listBuckets(Long accountId) {
+        ObsAccountEntity account = obsAccountCrudService.getById(accountId);
+        if (account == null) {
+            throw new BizException(40401, "账户不存在");
         }
-        return new ObjectListResponse(bucket, objectKeys);
+        List<String> buckets = obsAccountCrudService.lambdaQuery()
+                .eq(ObsAccountEntity::getId, accountId)
+                .list()
+                .stream()
+                .map(ObsAccountEntity::getBucket)
+                .filter(bucket -> bucket != null && !bucket.isBlank())
+                .distinct()
+                .sorted()
+                .toList();
+        return new BucketListResponse(buckets);
     }
 
-    private static Map<String, List<String>> buildMockData() {
-        Map<String, List<String>> mockData = new LinkedHashMap<>();
-        mockData.put("demo-bucket-a", List.of(
-                "finance/2025/12/report-20251201.csv",
-                "finance/2025/12/report-20251202.csv",
-                "finance/2025/12/report-20251203.csv",
-                "finance/2026/01/report-20260101.csv",
-                "finance/2026/01/report-20260102.csv",
-                "finance/archive/readme.md"
-        ));
-        mockData.put("demo-bucket-b", List.of(
-                "media/images/banner-home-v1.png",
-                "media/images/banner-home-v2.png",
-                "media/images/logo.svg",
-                "media/videos/intro-1080p.mp4",
-                "media/videos/intro-4k.mp4",
-                "media/thumbs/intro-0001.jpg",
-                "media/thumbs/intro-0002.jpg"
-        ));
-        mockData.put("demo-bucket-c", List.of(
-                "warehouse/orders/2026/02/partition=01/part-0001.parquet",
-                "warehouse/orders/2026/02/partition=01/part-0002.parquet",
-                "warehouse/orders/2026/02/partition=02/part-0001.parquet",
-                "warehouse/orders/2026/02/partition=02/part-0002.parquet",
-                "warehouse/users/snapshot-20260201.orc"
-        ));
-        mockData.put("demo-bucket-log", List.of(
-                "app-logs/worker-a/2026-02-18.log.gz",
-                "app-logs/worker-a/2026-02-19.log.gz",
-                "app-logs/worker-b/2026-02-19.log.gz",
-                "app-logs/master/2026-02-19.log.gz",
-                "app-logs/master/2026-02-20.log.gz"
-        ));
-        mockData.put("demo-bucket-backup", List.of(
-                "backup/mysql/full-2026-02-15.sql.gz",
-                "backup/mysql/inc-2026-02-16.sql.gz",
-                "backup/mysql/inc-2026-02-17.sql.gz",
-                "backup/config/master-2026-02-20.tar.gz",
-                "backup/config/worker-2026-02-20.tar.gz",
-                "backup/restore-guide.txt"
-        ));
-        return Map.copyOf(mockData);
+    @Override
+    public ObsObjectListingResponse listObjects(
+            String bucket,
+            String prefix,
+            String delimiter,
+            String marker,
+            String continuationToken
+    ) {
+        String normalizedDelimiter = normalizeDelimiter(delimiter);
+        String normalizedPrefix = normalizePrefix(prefix, normalizedDelimiter);
+
+        List<ObsMockObjectEntity> candidates = obsMockObjectCrudService.lambdaQuery()
+                .eq(ObsMockObjectEntity::getBucket, bucket)
+                .likeRight(ObsMockObjectEntity::getObjectKey, normalizedPrefix)
+                .orderByAsc(ObsMockObjectEntity::getObjectKey)
+                .list();
+
+        Map<String, ObsDirectoryItemResponse> directories = new TreeMap<>();
+        List<ObsObjectItemResponse> objects = new java.util.ArrayList<>();
+
+        for (ObsMockObjectEntity entity : candidates) {
+            String key = entity.getObjectKey();
+            if (!key.startsWith(normalizedPrefix)) {
+                continue;
+            }
+            String remainder = key.substring(normalizedPrefix.length());
+            if (remainder.isEmpty()) {
+                continue;
+            }
+
+            int nextDelimiterIndex = normalizedDelimiter.isEmpty() ? -1 : remainder.indexOf(normalizedDelimiter);
+            if (nextDelimiterIndex >= 0) {
+                String name = remainder.substring(0, nextDelimiterIndex);
+                if (!name.isEmpty()) {
+                    String directoryPrefix = normalizedPrefix
+                            + remainder.substring(0, nextDelimiterIndex + normalizedDelimiter.length());
+                    directories.putIfAbsent(name, new ObsDirectoryItemResponse(name, directoryPrefix));
+                }
+                continue;
+            }
+
+            String lastModified = entity.getLastModified() == null
+                    ? null
+                    : entity.getLastModified().atOffset(ZoneOffset.UTC).format(ISO_8601);
+            objects.add(new ObsObjectItemResponse(
+                    entity.getObjectKey(),
+                    entity.getSize() == null ? 0L : entity.getSize(),
+                    lastModified,
+                    entity.getEtag(),
+                    entity.getStorageClass()
+            ));
+        }
+
+        objects.sort(Comparator.comparing(ObsObjectItemResponse::key));
+
+        return new ObsObjectListingResponse(
+                bucket,
+                normalizedPrefix,
+                normalizedDelimiter,
+                List.copyOf(directories.values()),
+                objects,
+                false,
+                null,
+                null
+        );
+    }
+
+    private String normalizeDelimiter(String delimiter) {
+        if (delimiter == null || delimiter.isBlank()) {
+            return DEFAULT_DELIMITER;
+        }
+        return delimiter;
+    }
+
+    private String normalizePrefix(String prefix, String delimiter) {
+        if (prefix == null || prefix.isBlank()) {
+            return "";
+        }
+        String trimmed = prefix.trim();
+        if (trimmed.equals(delimiter)) {
+            return "";
+        }
+        if (trimmed.endsWith(delimiter)) {
+            return trimmed;
+        }
+        return trimmed + delimiter;
     }
 }

@@ -32,6 +32,11 @@
             <artifactId>okhttp</artifactId>
             <version>${okhttp.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.huaweicloud</groupId>
+            <artifactId>esdk-obs-java-bundle</artifactId>
+            <version>${obs.sdk.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

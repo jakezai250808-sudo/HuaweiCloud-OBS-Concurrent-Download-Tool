@@ -11,6 +11,7 @@ public record WorkerRuntimeProperties(
         String masterSsh,
         String targetPath,
         String targetTmpSubdir,
+        Boolean rsyncRequired,
         Long leaseTaskId,
         Integer heartbeatSeconds,
         Integer leaseBatchSize,
@@ -19,6 +20,9 @@ public record WorkerRuntimeProperties(
     public WorkerRuntimeProperties {
         if (leaseTaskId == null) {
             leaseTaskId = 1L;
+        }
+        if (rsyncRequired == null) {
+            rsyncRequired = false;
         }
         if (heartbeatSeconds == null) {
             heartbeatSeconds = 10;

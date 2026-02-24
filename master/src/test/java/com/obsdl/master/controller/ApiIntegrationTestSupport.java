@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
-@SpringBootTest
+@SpringBootTest(properties = "obs.browser.mode=mock")
 @AutoConfigureMockMvc
 @ActiveProfiles("demo")
 abstract class ApiIntegrationTestSupport {

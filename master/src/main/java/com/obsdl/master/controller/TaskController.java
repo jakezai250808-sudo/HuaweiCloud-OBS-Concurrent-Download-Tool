@@ -25,6 +25,18 @@ public class TaskController {
         return ApiResponse.success(taskService.create(request));
     }
 
+    @PostMapping("/{id}/retry")
+    @Operation(summary = "基于已有任务重建重试任务（仅失败对象）")
+    public ApiResponse<TaskCreateResponse> retry(@PathVariable("id") Long id) {
+        return ApiResponse.success(taskService.retryFromTask(id));
+    }
+
+    @GetMapping
+    @Operation(summary = "查询任务列表")
+    public ApiResponse<List<TaskResponse>> list() {
+        return ApiResponse.success(taskService.list());
+    }
+
 
     @PostMapping("/{id}/lease")
     @Operation(summary = "Worker 租约领取任务对象")

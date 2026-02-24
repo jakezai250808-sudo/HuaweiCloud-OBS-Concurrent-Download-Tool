@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.obsdl.master.controller.ObsMockControllerApiTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.386 s -- in com.obsdl.master.controller.ObsMockControllerApiTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.042 s -- in com.obsdl.master.controller.ObsMockControllerApiTest

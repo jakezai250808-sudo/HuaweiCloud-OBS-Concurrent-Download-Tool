@@ -28,3 +28,7 @@ logging:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+obs:
+  browser:
+    mode: real

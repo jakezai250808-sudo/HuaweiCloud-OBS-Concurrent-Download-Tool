@@ -14,7 +14,8 @@ worker:
     master-ssh: ${MASTER_SSH:root@127.0.0.1}
     target-path: ${TARGET_PATH:/data/obsdl}
     target-tmp-subdir: ${TARGET_TMP_SUBDIR:.obsdl_tmp}
-    lease-task-id: ${LEASE_TASK_ID:1}
+    rsync-required: ${RSYNC_REQUIRED:false}
+    lease-task-id: ${LEASE_TASK_ID:1003}
     heartbeat-seconds: ${HEARTBEAT_SECONDS:10}
     lease-batch-size: ${LEASE_BATCH_SIZE:50}
     lease-idle-sleep-ms: ${LEASE_IDLE_SLEEP_MS:2000}
