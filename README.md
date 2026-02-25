@@ -221,3 +221,55 @@ curl -X POST 'http://localhost:8080/api/v1/ros/stop' -H 'X-CTRL-TOKEN: change_me
 
 - `status` 会校验 PID 存活；若关键进程退出则返回 `STOPPED` 且 message=`Process not alive`。
 - 返回 `wsUrl`（如 `ws://localhost:9090`）可直接给前端/可视化工具使用。
+
+## 10. Docker 部署（构建镜像 + 启动脚本）
+
+### 10.1 构建镜像
+
+```bash
+./scripts/build-images.sh
+```
+
+可选自定义镜像名：
+
+```bash
+MASTER_IMAGE=myrepo/obsdl-master:1.0 WORKER_IMAGE=myrepo/obsdl-worker:1.0 ./scripts/build-images.sh
+```
+
+脚本会先执行 Maven 打包，再构建两张镜像：
+- `scripts/docker/master.Dockerfile`
+- `scripts/docker/worker.Dockerfile`
+
+### 10.2 一键启动 MySQL + master + worker
+
+```bash
+./scripts/start-stack.sh
+```
+
+默认行为：
+- 启动 `mysql:8.0` 容器并挂载 `db/init.sql` 自动初始化
+- 启动 `obsdl/master:latest`（连接容器内 MySQL）
+- 启动 `obsdl/worker:latest`（`MASTER_URL` 指向 master 容器）
+
+常用环境变量：
+- `MYSQL_ROOT_PASSWORD`（默认 `root`）
+- `MYSQL_DATABASE`（默认 `obsdl`）
+- `MASTER_PORT`（默认 `8080`）
+- `WORKER_PORT`（默认 `8081`）
+- `MYSQL_PORT`（默认 `3306`）
+
+停止：
+
+```bash
+docker rm -f obsdl-worker obsdl-master obsdl-mysql
+```
+
+### 10.3 仅启动 demo 模式 master（内存 H2）
+
+```bash
+./scripts/start-master-demo.sh
+```
+
+访问：
+- master: `http://localhost:8080`
+- H2 Console: `http://localhost:8080/h2-console`
