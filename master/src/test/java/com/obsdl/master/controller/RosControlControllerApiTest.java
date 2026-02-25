@@ -75,4 +75,15 @@ class RosControlControllerApiTest extends ApiIntegrationTestSupport {
 
         verify(rosControlService).start(any());
     }
+
+    @Test
+    void startShouldReturn400WhenContentTypeIsNotJson() throws Exception {
+        when(apiTokenService.isTokenValid("change_me")).thenReturn(true);
+
+        mockMvc.perform(post("/api/v1/ros/start")
+                        .header("X-CTRL-TOKEN", "change_me")
+                        .content("rosVersion=ROS1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(40003));
+    }
 }
