@@ -33,5 +33,5 @@ control:
   ros2-setup: /opt/ros/humble/setup.bash
   log-out: /tmp/rosctl.out
   log-err: /tmp/rosctl.err
-  host-for-ws-url: localhost
+  host-for-ws-url: ""
   token-cache-ttl-seconds: 60
