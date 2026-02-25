@@ -2,10 +2,12 @@ package com.obsdl.master.exception;
 
 import com.obsdl.master.api.ApiResponse;
 import jakarta.validation.ConstraintViolationException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -45,6 +48,11 @@ public class GlobalExceptionHandler {
         return ApiResponse.error(40002, "请求体格式错误");
     }
 
+    @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+    public ApiResponse<Void> handleMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex) {
+        return ApiResponse.error(40003, "Content-Type 不支持，请使用 application/json");
+    }
+
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ApiResponse<Void> handleMissingRequestParameter(MissingServletRequestParameterException ex) {
         return ApiResponse.error(40001, ex.getParameterName() + " 不能为空");
@@ -57,6 +65,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ApiResponse<Void> handleUnknownException(Exception ex) {
+        log.error("unhandled exception", ex);
         return ApiResponse.error(50000, "服务器内部错误");
     }
 }
