@@ -11,9 +11,9 @@ MASTER_BASE_IMAGE="${MASTER_BASE_IMAGE:-$BASE_IMAGE}"
 WORKER_BASE_IMAGE="${WORKER_BASE_IMAGE:-$BASE_IMAGE}"
 
 # BUILD_JAR modes:
-# - auto (default): build jar only when target jars are missing
-# - always: always run maven package
-# - never: never run maven package (require existing jars)
+# - auto (default): build/repackage jars only when missing or non-executable
+# - always: always run maven package + spring-boot:repackage
+# - never: never run maven (require existing executable Spring Boot jars)
 BUILD_JAR="${BUILD_JAR:-auto}"
 
 check_java_runtime() {
@@ -26,8 +26,35 @@ check_java_runtime() {
   fi
 }
 
-MASTER_JAR_COUNT=$(find master/target -maxdepth 1 -type f -name '*.jar' 2>/dev/null | wc -l | tr -d ' ')
-WORKER_JAR_COUNT=$(find worker/target -maxdepth 1 -type f -name '*.jar' 2>/dev/null | wc -l | tr -d ' ')
+is_executable_boot_jar() {
+  local jar_file="$1"
+  unzip -p "$jar_file" META-INF/MANIFEST.MF 2>/dev/null | grep -Eq '^Start-Class: |^Main-Class: org\.springframework\.boot\.loader\.'
+}
+
+pick_single_jar() {
+  local module="$1"
+  local jar
+  jar=$(find "$module/target" -maxdepth 1 -type f -name '*.jar' | head -n 1 || true)
+  echo "$jar"
+}
+
+build_repackage() {
+  printf '[1/4] Building executable Spring Boot jars...\n'
+  mvn -q -pl master -am -DskipTests package spring-boot:repackage
+  mvn -q -pl worker -am -DskipTests package spring-boot:repackage
+}
+
+MASTER_JAR=$(pick_single_jar master)
+WORKER_JAR=$(pick_single_jar worker)
+MASTER_OK=false
+WORKER_OK=false
+
+if [[ -n "$MASTER_JAR" ]] && is_executable_boot_jar "$MASTER_JAR"; then
+  MASTER_OK=true
+fi
+if [[ -n "$WORKER_JAR" ]] && is_executable_boot_jar "$WORKER_JAR"; then
+  WORKER_OK=true
+fi
 
 need_build=false
 case "$BUILD_JAR" in
@@ -38,7 +65,7 @@ case "$BUILD_JAR" in
     need_build=false
     ;;
   auto)
-    if [[ "$MASTER_JAR_COUNT" -eq 0 || "$WORKER_JAR_COUNT" -eq 0 ]]; then
+    if [[ "$MASTER_OK" != true || "$WORKER_OK" != true ]]; then
       need_build=true
     fi
     ;;
@@ -49,17 +76,27 @@ case "$BUILD_JAR" in
 esac
 
 if [[ "$need_build" == true ]]; then
-  printf '[1/4] Building jars with Maven...\n'
-  mvn -q -DskipTests package
+  build_repackage
 else
-  printf '[1/4] Skipping Maven package (BUILD_JAR=%s).\n' "$BUILD_JAR"
+  printf '[1/4] Skipping Maven build (BUILD_JAR=%s).\n' "$BUILD_JAR"
 fi
 
-MASTER_JAR_COUNT=$(find master/target -maxdepth 1 -type f -name '*.jar' 2>/dev/null | wc -l | tr -d ' ')
-WORKER_JAR_COUNT=$(find worker/target -maxdepth 1 -type f -name '*.jar' 2>/dev/null | wc -l | tr -d ' ')
-if [[ "$MASTER_JAR_COUNT" -eq 0 || "$WORKER_JAR_COUNT" -eq 0 ]]; then
+MASTER_JAR=$(pick_single_jar master)
+WORKER_JAR=$(pick_single_jar worker)
+if [[ -z "$MASTER_JAR" || -z "$WORKER_JAR" ]]; then
   echo "Missing jar(s): master/target/*.jar or worker/target/*.jar not found." >&2
-  echo "Please run Maven package first or set BUILD_JAR=always." >&2
+  echo "Please run BUILD_JAR=always or package jars first." >&2
+  exit 1
+fi
+
+if ! is_executable_boot_jar "$MASTER_JAR" || ! is_executable_boot_jar "$WORKER_JAR"; then
+  echo "Detected non-executable jar (no Spring Boot main manifest)." >&2
+  echo "This causes: 'no main manifest attribute, in /app/app.jar'." >&2
+  echo "Fix by rebuilding executable jars:" >&2
+  echo "  BUILD_JAR=always ./scripts/build-images.sh" >&2
+  echo "or run manually on build machine:" >&2
+  echo "  mvn -pl master -am -DskipTests package spring-boot:repackage" >&2
+  echo "  mvn -pl worker -am -DskipTests package spring-boot:repackage" >&2
   exit 1
 fi
 

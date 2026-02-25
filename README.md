@@ -249,9 +249,9 @@ MASTER_BASE_IMAGE=eclipse-temurin:17-jre WORKER_BASE_IMAGE=eclipse-temurin:17-jr
 ```
 
 脚本支持以下打包模式（`BUILD_JAR`）：
-- `auto`（默认）：若 `master/target/*.jar` 或 `worker/target/*.jar` 缺失，则自动执行 Maven 打包
-- `always`：总是执行 Maven 打包
-- `never`：不执行 Maven（适合你这种 Windows 打包、Ubuntu 仅构建镜像）
+- `auto`（默认）：若 jar 缺失，或检测到不是可执行 Spring Boot jar（manifest 无 `Start-Class`），则自动执行 Maven 打包+repackage
+- `always`：总是执行 Maven 打包+repackage
+- `never`：不执行 Maven（适合你这种 Windows 打包、Ubuntu 仅构建镜像；但要求已存在可执行 Spring Boot jar）
 
 示例（Ubuntu 仅构建镜像，不跑 Maven）：
 
@@ -262,6 +262,25 @@ BUILD_JAR=never ./scripts/build-images.sh
 脚本会构建两张镜像：
 - `scripts/docker/master.Dockerfile`
 - `scripts/docker/worker.Dockerfile`
+
+如果日志出现：
+
+```
+no main manifest attribute, in /app/app.jar
+```
+
+说明放进镜像的是普通 jar（非 Spring Boot 可执行 jar）。请在打包机执行：
+
+```bash
+mvn -pl master -am -DskipTests package spring-boot:repackage
+mvn -pl worker -am -DskipTests package spring-boot:repackage
+```
+
+或直接在构建机上使用：
+
+```bash
+BUILD_JAR=always ./scripts/build-images.sh
+```
 
 如果遇到如下报错：
 
