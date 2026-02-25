@@ -65,3 +65,18 @@ CREATE TABLE IF NOT EXISTS obs_mock_object (
     UNIQUE KEY uk_obs_mock_bucket_object (bucket, object_key),
     KEY idx_obs_mock_bucket_key (bucket, object_key)
 );
+
+
+CREATE TABLE IF NOT EXISTS api_token (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    token VARCHAR(128) NOT NULL,
+    name VARCHAR(64),
+    enabled TINYINT(1) NOT NULL DEFAULT 1,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY uk_api_token_token (token)
+);
+
+INSERT INTO api_token(token, name, enabled)
+VALUES ('change_me', 'default', 1)
+ON DUPLICATE KEY UPDATE updated_at = CURRENT_TIMESTAMP;
