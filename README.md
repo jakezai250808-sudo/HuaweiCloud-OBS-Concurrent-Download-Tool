@@ -315,6 +315,8 @@ docker rm -f obsdl-worker obsdl-master obsdl-mysql
 HOST_BIND=0.0.0.0 ACCESS_HOST=192.168.1.10 ./scripts/start-master-demo.sh
 ```
 
+脚本会等待容器启动（默认 `STARTUP_WAIT_SECONDS=10`）；若容器异常退出（如 `Exited (1)`），会自动打印最近日志并返回失败码。
+
 访问：
 - master: `http://<你的主机IP>:8080`
 - H2 Console: `http://<你的主机IP>:8080/h2-console`
