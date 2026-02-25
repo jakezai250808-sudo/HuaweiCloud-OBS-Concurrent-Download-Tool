@@ -239,6 +239,12 @@ MASTER_IMAGE=myrepo/obsdl-master:1.0 WORKER_IMAGE=myrepo/obsdl-worker:1.0 ./scri
 可选自定义基础镜像（Dockerfile 第一行 `FROM`）：
 
 ```bash
+BASE_IMAGE=eclipse-temurin:17-jre ./scripts/build-images.sh
+```
+
+若需分别指定 master/worker：
+
+```bash
 MASTER_BASE_IMAGE=eclipse-temurin:17-jre WORKER_BASE_IMAGE=eclipse-temurin:17-jre ./scripts/build-images.sh
 ```
 

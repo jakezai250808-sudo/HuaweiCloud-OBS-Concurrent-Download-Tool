@@ -6,8 +6,9 @@ cd "$ROOT_DIR"
 
 MASTER_IMAGE="${MASTER_IMAGE:-obsdl/master:latest}"
 WORKER_IMAGE="${WORKER_IMAGE:-obsdl/worker:latest}"
-MASTER_BASE_IMAGE="${MASTER_BASE_IMAGE:-eclipse-temurin:17-jre}"
-WORKER_BASE_IMAGE="${WORKER_BASE_IMAGE:-eclipse-temurin:17-jre}"
+BASE_IMAGE="${BASE_IMAGE:-eclipse-temurin:17-jre}"
+MASTER_BASE_IMAGE="${MASTER_BASE_IMAGE:-$BASE_IMAGE}"
+WORKER_BASE_IMAGE="${WORKER_BASE_IMAGE:-$BASE_IMAGE}"
 
 printf '[1/3] Building jars...\n'
 mvn -q -DskipTests package
