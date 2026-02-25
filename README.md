@@ -294,6 +294,8 @@ BASE_IMAGE=eclipse-temurin:17-jre ./scripts/build-images.sh
 - `MASTER_PORT`（默认 `8080`）
 - `WORKER_PORT`（默认 `8081`）
 - `MYSQL_PORT`（默认 `3306`）
+- `HOST_BIND`（默认 `0.0.0.0`，允许本机 IP 访问）
+- `ACCESS_HOST`（默认自动取本机首个 IP，用于输出访问地址）
 
 停止：
 
@@ -307,6 +309,12 @@ docker rm -f obsdl-worker obsdl-master obsdl-mysql
 ./scripts/start-master-demo.sh
 ```
 
+支持通过 `HOST_BIND` 绑定监听地址（默认 `0.0.0.0`），支持通过 `ACCESS_HOST` 指定输出访问地址：
+
+```bash
+HOST_BIND=0.0.0.0 ACCESS_HOST=192.168.1.10 ./scripts/start-master-demo.sh
+```
+
 访问：
-- master: `http://localhost:8080`
-- H2 Console: `http://localhost:8080/h2-console`
+- master: `http://<你的主机IP>:8080`
+- H2 Console: `http://<你的主机IP>:8080/h2-console`
