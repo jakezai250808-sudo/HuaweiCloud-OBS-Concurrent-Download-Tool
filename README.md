@@ -263,6 +263,20 @@ BUILD_JAR=never ./scripts/build-images.sh
 - `scripts/docker/master.Dockerfile`
 - `scripts/docker/worker.Dockerfile`
 
+如果遇到如下报错：
+
+```
+exec: "java": executable file not found in $PATH
+```
+
+说明构建时使用了不包含 JRE 的基础镜像。请使用带 Java 运行时的基础镜像重新构建：
+
+```bash
+BASE_IMAGE=eclipse-temurin:17-jre ./scripts/build-images.sh
+```
+
+`start-master-demo.sh` 现在会在启动前检查镜像中是否存在 `java`，并给出提示。
+
 ### 10.2 一键启动 MySQL + master + worker
 
 ```bash
