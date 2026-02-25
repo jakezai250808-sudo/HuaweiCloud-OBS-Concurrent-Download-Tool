@@ -248,7 +248,18 @@ BASE_IMAGE=eclipse-temurin:17-jre ./scripts/build-images.sh
 MASTER_BASE_IMAGE=eclipse-temurin:17-jre WORKER_BASE_IMAGE=eclipse-temurin:17-jre ./scripts/build-images.sh
 ```
 
-脚本会先执行 Maven 打包，再构建两张镜像：
+脚本支持以下打包模式（`BUILD_JAR`）：
+- `auto`（默认）：若 `master/target/*.jar` 或 `worker/target/*.jar` 缺失，则自动执行 Maven 打包
+- `always`：总是执行 Maven 打包
+- `never`：不执行 Maven（适合你这种 Windows 打包、Ubuntu 仅构建镜像）
+
+示例（Ubuntu 仅构建镜像，不跑 Maven）：
+
+```bash
+BUILD_JAR=never ./scripts/build-images.sh
+```
+
+脚本会构建两张镜像：
 - `scripts/docker/master.Dockerfile`
 - `scripts/docker/worker.Dockerfile`
 
