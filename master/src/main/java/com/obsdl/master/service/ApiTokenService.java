@@ -4,12 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.obsdl.master.config.ControlProperties;
 import com.obsdl.master.entity.ApiTokenEntity;
 import com.obsdl.master.mapper.ApiTokenMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Slf4j
 @Service
 public class ApiTokenService {
 
@@ -37,14 +39,21 @@ public class ApiTokenService {
         if (now - lastLoadedAt < ttlMs && !tokenCache.isEmpty()) {
             return;
         }
+
         tokenCache.clear();
-        LambdaQueryWrapper<ApiTokenEntity> query = new LambdaQueryWrapper<ApiTokenEntity>()
-                .eq(ApiTokenEntity::getEnabled, true)
-                .isNotNull(ApiTokenEntity::getToken);
-        apiTokenMapper.selectList(query).stream()
-                .map(ApiTokenEntity::getToken)
-                .filter(v -> v != null && !v.isBlank())
-                .forEach(tokenCache::add);
-        lastLoadedAt = now;
+        try {
+            LambdaQueryWrapper<ApiTokenEntity> query = new LambdaQueryWrapper<ApiTokenEntity>()
+                    .eq(ApiTokenEntity::getEnabled, true)
+                    .isNotNull(ApiTokenEntity::getToken);
+            apiTokenMapper.selectList(query).stream()
+                    .map(ApiTokenEntity::getToken)
+                    .filter(v -> v != null && !v.isBlank())
+                    .forEach(tokenCache::add);
+        } catch (Exception ex) {
+            // 降级策略：表不存在/数据库异常时，不放行任何 token，避免接口 500。
+            log.warn("failed to load api tokens from DB, all ROS control requests will be unauthorized", ex);
+        } finally {
+            lastLoadedAt = now;
+        }
     }
 }
