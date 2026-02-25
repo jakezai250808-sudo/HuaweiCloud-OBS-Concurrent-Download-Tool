@@ -220,7 +220,7 @@ curl -X POST 'http://localhost:8080/api/v1/ros/stop' -H 'X-CTRL-TOKEN: change_me
 ```
 
 - `status` 会校验 PID 存活；若关键进程退出则返回 `STOPPED` 且 message=`Process not alive`。
-- 返回 `wsUrl`（默认取机器可达 IP，例如 `ws://192.168.1.10:9090`）；如需固定域名/IP，可配置 `control.host-for-ws-url`。
+- 返回 `wsUrl`（默认自动选择机器可达 IP，且多网卡时优先 10 网段，例如 `ws://10.10.1.23:9090`）；如需固定域名/IP，可配置 `control.host-for-ws-url`。
 
 ## 10. Docker 部署（构建镜像 + 启动脚本）
 
