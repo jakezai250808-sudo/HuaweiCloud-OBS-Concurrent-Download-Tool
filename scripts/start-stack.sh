@@ -15,6 +15,9 @@ WORKER_IMAGE="${WORKER_IMAGE:-obsdl/worker:latest}"
 MASTER_PORT="${MASTER_PORT:-8080}"
 WORKER_PORT="${WORKER_PORT:-8081}"
 MYSQL_PORT="${MYSQL_PORT:-3306}"
+HOST_BIND="${HOST_BIND:-0.0.0.0}"
+ACCESS_HOST="${ACCESS_HOST:-$(hostname -I 2>/dev/null | awk '{print $1}')}"
+ACCESS_HOST="${ACCESS_HOST:-localhost}"
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
@@ -28,7 +31,7 @@ if ! docker ps -a --format '{{.Names}}' | grep -qx "$MYSQL_CONTAINER"; then
     --network "$NETWORK_NAME" \
     -e MYSQL_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD" \
     -e MYSQL_DATABASE="$MYSQL_DATABASE" \
-    -p "$MYSQL_PORT:3306" \
+    -p "$HOST_BIND:$MYSQL_PORT:3306" \
     -v "$ROOT_DIR/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro" \
     mysql:8.0 >/dev/null
 else
@@ -42,7 +45,7 @@ fi
 docker run -d \
   --name "$MASTER_CONTAINER" \
   --network "$NETWORK_NAME" \
-  -p "$MASTER_PORT:8080" \
+  -p "$HOST_BIND:$MASTER_PORT:8080" \
   -e SPRING_DATASOURCE_URL="jdbc:mysql://$MYSQL_CONTAINER:3306/$MYSQL_DATABASE?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false" \
   -e SPRING_DATASOURCE_USERNAME="root" \
   -e SPRING_DATASOURCE_PASSWORD="$MYSQL_ROOT_PASSWORD" \
@@ -55,15 +58,16 @@ fi
 docker run -d \
   --name "$WORKER_CONTAINER" \
   --network "$NETWORK_NAME" \
-  -p "$WORKER_PORT:8081" \
+  -p "$HOST_BIND:$WORKER_PORT:8081" \
   -e MASTER_URL="http://$MASTER_CONTAINER:8080" \
   "$WORKER_IMAGE" >/dev/null
 
 cat <<MSG
 Stack started:
-- MySQL : localhost:${MYSQL_PORT} (${MYSQL_CONTAINER})
-- Master: http://localhost:${MASTER_PORT} (${MASTER_CONTAINER})
-- Worker: http://localhost:${WORKER_PORT} (${WORKER_CONTAINER})
+- Bind  : ${HOST_BIND}
+- MySQL : ${ACCESS_HOST}:${MYSQL_PORT} (${MYSQL_CONTAINER})
+- Master: http://${ACCESS_HOST}:${MASTER_PORT} (${MASTER_CONTAINER})
+- Worker: http://${ACCESS_HOST}:${WORKER_PORT} (${WORKER_CONTAINER})
 
 Stop command:
   docker rm -f ${WORKER_CONTAINER} ${MASTER_CONTAINER} ${MYSQL_CONTAINER}

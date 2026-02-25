@@ -4,6 +4,9 @@ set -euo pipefail
 MASTER_IMAGE="${MASTER_IMAGE:-obsdl/master:latest}"
 MASTER_CONTAINER="${MASTER_CONTAINER:-obsdl-master-demo}"
 MASTER_PORT="${MASTER_PORT:-8080}"
+HOST_BIND="${HOST_BIND:-0.0.0.0}"
+ACCESS_HOST="${ACCESS_HOST:-$(hostname -I 2>/dev/null | awk '{print $1}')}"
+ACCESS_HOST="${ACCESS_HOST:-localhost}"
 
 if ! docker image inspect "$MASTER_IMAGE" >/dev/null 2>&1; then
   echo "Image not found: $MASTER_IMAGE" >&2
@@ -23,12 +26,14 @@ fi
 
 docker run -d \
   --name "$MASTER_CONTAINER" \
-  -p "$MASTER_PORT:8080" \
+  -p "$HOST_BIND:$MASTER_PORT:8080" \
   -e SPRING_PROFILES_ACTIVE=demo \
   "$MASTER_IMAGE" >/dev/null
 
 cat <<MSG
-Demo master started: http://localhost:${MASTER_PORT}
-H2 Console         : http://localhost:${MASTER_PORT}/h2-console
-Stop command       : docker rm -f ${MASTER_CONTAINER}
+Demo master started:
+- Bind       : ${HOST_BIND}
+- Master URL : http://${ACCESS_HOST}:${MASTER_PORT}
+- H2 Console : http://${ACCESS_HOST}:${MASTER_PORT}/h2-console
+Stop command : docker rm -f ${MASTER_CONTAINER}
 MSG
