@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -45,4 +46,17 @@ class ApiTokenServiceTest {
         assertTrue(service.isTokenValid("cached-token"));
         verify(apiTokenMapper, times(2)).selectList(any());
     }
+    @Test
+    void shouldDenyAllTokensWhenTokenTableMissing() {
+        when(apiTokenMapper.selectList(any())).thenThrow(new RuntimeException("Table \"api_token\" not found"));
+
+        ApiTokenService service = new ApiTokenService(
+                apiTokenMapper,
+                new ControlProperties(null, null, null, null, null, 60)
+        );
+
+        assertDoesNotThrow(service::reloadTokensIfNeeded);
+        assertFalse(service.isTokenValid("any-token"));
+    }
+
 }
