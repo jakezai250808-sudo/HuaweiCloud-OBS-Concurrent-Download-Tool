@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS api_token (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     token VARCHAR(128) NOT NULL,
     name VARCHAR(64),
-    enabled BOOLEAN NOT NULL DEFAULT TRUE,
+    enabled TINYINT NOT NULL DEFAULT 1,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT uk_api_token_token UNIQUE (token)
@@ -108,5 +108,5 @@ KEY (id) VALUES
 
 MERGE INTO api_token (id, token, name, enabled, created_at, updated_at)
 KEY (id) VALUES
-    (1, 'change_me', 'default', TRUE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, 'change_me', 'default', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
