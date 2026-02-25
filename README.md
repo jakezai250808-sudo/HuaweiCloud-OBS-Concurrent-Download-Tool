@@ -236,6 +236,12 @@ curl -X POST 'http://localhost:8080/api/v1/ros/stop' -H 'X-CTRL-TOKEN: change_me
 MASTER_IMAGE=myrepo/obsdl-master:1.0 WORKER_IMAGE=myrepo/obsdl-worker:1.0 ./scripts/build-images.sh
 ```
 
+可选自定义基础镜像（Dockerfile 第一行 `FROM`）：
+
+```bash
+MASTER_BASE_IMAGE=eclipse-temurin:17-jre WORKER_BASE_IMAGE=eclipse-temurin:17-jre ./scripts/build-images.sh
+```
+
 脚本会先执行 Maven 打包，再构建两张镜像：
 - `scripts/docker/master.Dockerfile`
 - `scripts/docker/worker.Dockerfile`
