@@ -26,3 +26,12 @@ obs:
   browser:
 #    mode: mock
     mode: real
+
+
+control:
+  ros1-setup: /opt/ros/noetic/setup.bash
+  ros2-setup: /opt/ros/humble/setup.bash
+  log-out: /tmp/rosctl.out
+  log-err: /tmp/rosctl.err
+  host-for-ws-url: localhost
+  token-cache-ttl-seconds: 60

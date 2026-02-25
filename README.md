@@ -161,3 +161,63 @@ curl -X POST 'http://localhost:8081/api/v1/worker/tasks' \
 ## 8. Worker 执行模式说明
 
 worker 已支持 register/heartbeat/lease/download/rsync/report 主流程，运行方式见 `worker/README.md`。
+
+## 9. ROS L1 Web 控制后端（master）
+
+新增接口前缀：`/api/v1/ros`，用于启动/停止 rosbag(ROS1)/ros2 bag(ROS2) 播放和 rosbridge websocket。
+
+### 9.1 依赖准备
+
+- 安装 ROS1/ROS2（例如 noetic + humble）
+- 安装 rosbridge_server 包
+- Linux 环境执行（进程管理依赖 `bash/setsid/kill`）
+
+### 9.2 配置项（master）
+
+`master/src/main/resources/application.yml` / `application-demo.yml`：
+
+```yaml
+control:
+  ros1-setup: /opt/ros/noetic/setup.bash
+  ros2-setup: /opt/ros/humble/setup.bash
+  log-out: /tmp/rosctl.out
+  log-err: /tmp/rosctl.err
+  host-for-ws-url: localhost
+  token-cache-ttl-seconds: 60
+```
+
+### 9.3 Token 改为数据库读取
+
+`X-CTRL-TOKEN` 不再来自固定配置，而是查询数据库表 `api_token`（仅 `enabled=1` 生效）。服务端带 60 秒 TTL 本地缓存，避免每次请求查库。
+
+默认初始化 token：`change_me`（请务必上线前修改）。
+
+示例 SQL：
+
+```sql
+SELECT token FROM api_token WHERE enabled=1;
+UPDATE api_token SET token='xxx' WHERE name='default';
+INSERT INTO api_token(token,name,enabled) VALUES('xxx','default',1);
+```
+
+### 9.4 API 调用示例
+
+```bash
+curl -X POST 'http://localhost:8080/api/v1/ros/start' \
+  -H 'Content-Type: application/json' \
+  -H 'X-CTRL-TOKEN: change_me' \
+  -d '{
+    "rosVersion": "ROS1",
+    "bagPath": "/abs/path/to/demo.bag",
+    "loop": true,
+    "useSimTime": true,
+    "rate": 1.0,
+    "port": 9090
+  }'
+
+curl -X GET 'http://localhost:8080/api/v1/ros/status' -H 'X-CTRL-TOKEN: change_me'
+curl -X POST 'http://localhost:8080/api/v1/ros/stop' -H 'X-CTRL-TOKEN: change_me'
+```
+
+- `status` 会校验 PID 存活；若关键进程退出则返回 `STOPPED` 且 message=`Process not alive`。
+- 返回 `wsUrl`（如 `ws://localhost:9090`）可直接给前端/可视化工具使用。

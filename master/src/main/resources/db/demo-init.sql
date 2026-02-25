@@ -53,6 +53,17 @@ CREATE TABLE IF NOT EXISTS worker_node (
     CONSTRAINT uk_worker_host_port UNIQUE (host, port)
 );
 
+
+CREATE TABLE IF NOT EXISTS api_token (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    token VARCHAR(128) NOT NULL,
+    name VARCHAR(64),
+    enabled BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT uk_api_token_token UNIQUE (token)
+);
+
 CREATE TABLE IF NOT EXISTS obs_mock_object (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     bucket VARCHAR(128) NOT NULL,
@@ -94,3 +105,8 @@ KEY (id) VALUES
     (3009, 'demo-bucket-2', 'reports/readme.md', 80, TIMESTAMP '2026-02-21 10:08:00', 'etag-3009', 'STANDARD'),
     (3010, 'demo-bucket-logs', 'app/2026/02/21/log-0001.gz', 1200, TIMESTAMP '2026-02-21 10:09:00', 'etag-3010', 'WARM'),
     (3011, 'demo-bucket-logs', 'app/2026/02/21/log-0002.gz', 1400, TIMESTAMP '2026-02-21 10:10:00', 'etag-3011', 'WARM');
+
+MERGE INTO api_token (id, token, name, enabled, created_at, updated_at)
+KEY (id) VALUES
+    (1, 'change_me', 'default', TRUE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
