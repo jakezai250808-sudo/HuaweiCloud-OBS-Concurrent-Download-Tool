@@ -18,8 +18,31 @@ MYSQL_PORT="${MYSQL_PORT:-3306}"
 HOST_BIND="${HOST_BIND:-0.0.0.0}"
 ACCESS_HOST="${ACCESS_HOST:-$(hostname -I 2>/dev/null | awk '{print $1}')}"
 ACCESS_HOST="${ACCESS_HOST:-localhost}"
+STARTUP_WAIT_SECONDS="${STARTUP_WAIT_SECONDS:-15}"
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+
+wait_running_or_fail() {
+  local container="$1"
+  local seconds="$2"
+  for _ in $(seq 1 "$seconds"); do
+    status=$(docker inspect -f '{{.State.Status}}' "$container" 2>/dev/null || echo "unknown")
+    case "$status" in
+      running)
+        return 0
+        ;;
+      exited|dead)
+        echo "Container ${container} failed to start (status=${status}). Recent logs:" >&2
+        docker logs --tail 200 "$container" >&2 || true
+        return 1
+        ;;
+    esac
+    sleep 1
+  done
+  echo "Container ${container} is not running after ${seconds}s. Recent logs:" >&2
+  docker logs --tail 200 "$container" >&2 || true
+  return 1
+}
 
 if ! docker network inspect "$NETWORK_NAME" >/dev/null 2>&1; then
   docker network create "$NETWORK_NAME" >/dev/null
@@ -51,6 +74,8 @@ docker run -d \
   -e SPRING_DATASOURCE_PASSWORD="$MYSQL_ROOT_PASSWORD" \
   "$MASTER_IMAGE" >/dev/null
 
+wait_running_or_fail "$MASTER_CONTAINER" "$STARTUP_WAIT_SECONDS"
+
 if docker ps -a --format '{{.Names}}' | grep -qx "$WORKER_CONTAINER"; then
   docker rm -f "$WORKER_CONTAINER" >/dev/null
 fi
@@ -61,6 +86,8 @@ docker run -d \
   -p "$HOST_BIND:$WORKER_PORT:8081" \
   -e MASTER_URL="http://$MASTER_CONTAINER:8080" \
   "$WORKER_IMAGE" >/dev/null
+
+wait_running_or_fail "$WORKER_CONTAINER" "$STARTUP_WAIT_SECONDS"
 
 cat <<MSG
 Stack started:
